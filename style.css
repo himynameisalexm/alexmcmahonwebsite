@@ -1144,6 +1144,32 @@ a { text-decoration: none; color: inherit; }
   transform: none;
 }
 
+.past-engagements {
+  margin-top: 2rem;
+}
+.engagement-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.engagement-list li {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.5;
+}
+.engagement-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--aurora-purple);
+  opacity: 0.7;
+}
+
 /* Visitor greeting — fades in above hero label */
 .visitor-greeting {
   font-size: 0.8rem;
