@@ -440,9 +440,9 @@ if (yearEl) yearEl.textContent = `© ${new Date().getFullYear()} Alex McMahon`;
 
     // Availability line in Speaking section
     if (isAU) {
-      showAvail('📍 Based in Sydney — available across Australia and internationally.');
+      showAvail('📍 Based in Brisbane, available across Australia and internationally.');
     } else if (country) {
-      showAvail(`✈️  Based in Sydney — available to travel to ${country} and beyond.`);
+      showAvail(`✈️  Based in Brisbane, available to travel to ${country} and beyond.`);
     }
 
   } catch (_) {
