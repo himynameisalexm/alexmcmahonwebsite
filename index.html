@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex McMahon — AI Design Leader & Speaker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">AM</a>
+    <div class="nav-links">
+      <a href="#speaking" class="nav-link">Speaking</a>
+      <a href="#ai" class="nav-link">AI Work</a>
+      <a href="#about" class="nav-link">About</a>
+    </div>
+    <a href="mailto:hello@alexmcmahon.com.au" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+
+    <!-- Neural network particle canvas -->
+    <canvas class="neural-canvas" id="neuralCanvas" aria-hidden="true"></canvas>
+
+    <!-- Aurora gradient layers -->
+    <div class="aurora" aria-hidden="true">
+      <div class="aurora-layer aurora-1"></div>
+      <div class="aurora-layer aurora-2"></div>
+      <div class="aurora-layer aurora-3"></div>
+      <div class="aurora-layer aurora-4"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="visitor-greeting" id="visitorGreeting" aria-live="polite"></div>
+
+      <div class="hero-label reveal-item">
+        <span class="status-dot"></span>
+        AI Design Leader · Speaker · Brisbane, AU
+      </div>
+
+      <h1 class="hero-title" id="heroTitle">
+        <span class="title-line" data-word="Alex"></span>
+        <span class="title-line" data-word="McMahon"></span>
+      </h1>
+
+      <p class="hero-sub reveal-item delay-2">
+        <span class="stream-target" data-text="Design Leader. Educator. AI experience builder."></span><br />
+        <em class="stream-target-2" data-text="Helping teams understand what AI changes and what it doesn't."></em>
+      </p>
+
+      <div class="hero-tags reveal-item delay-3">
+        <span class="tag tag-speak">🎤 Available to Speak</span>
+        <span class="tag">AI UX</span>
+        <span class="tag">LLM Interfaces</span>
+        <span class="tag">Design Leadership</span>
+      </div>
+
+      <div class="hero-cta reveal-item delay-4">
+        <a href="mailto:hello@alexmcmahon.com.au" class="btn-primary">
+          <span class="btn-glow"></span>
+          Get in Touch
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+
+    <!-- Supersized bg letter -->
+    <div class="hero-bg-letter" aria-hidden="true">AI</div>
+  </section>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-inner">
+        <span>AI UX Design</span><span class="sep">·</span>
+        <span>LLM Interfaces</span><span class="sep">·</span>
+        <span>Human-AI Interaction</span><span class="sep">·</span>
+        <span>Generative AI</span><span class="sep">·</span>
+        <span>AI Design Systems</span><span class="sep">·</span>
+        <span>Agentic UX</span><span class="sep">·</span>
+        <span>AI Automations</span><span class="sep">·</span>
+        <span>Multimodal Design</span><span class="sep">·</span>
+        <span>Figma AI</span><span class="sep">·</span>
+        <span>Responsible AI</span><span class="sep">·</span>
+        <span>Design Leadership</span><span class="sep">·</span>
+        <span>0→1 Products</span><span class="sep">·</span>
+        <!-- Duplicate -->
+        <span>AI UX Design</span><span class="sep">·</span>
+        <span>LLM Interfaces</span><span class="sep">·</span>
+        <span>Human-AI Interaction</span><span class="sep">·</span>
+        <span>Generative AI</span><span class="sep">·</span>
+        <span>AI Design Systems</span><span class="sep">·</span>
+        <span>Agentic UX</span><span class="sep">·</span>
+        <span>AI Automations</span><span class="sep">·</span>
+        <span>Multimodal Design</span><span class="sep">·</span>
+        <span>Figma AI</span><span class="sep">·</span>
+        <span>Responsible AI</span><span class="sep">·</span>
+        <span>Design Leadership</span><span class="sep">·</span>
+        <span>0→1 Products</span><span class="sep">·</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="about" id="about">
+    <div class="about-grid">
+
+      <div class="about-left">
+        <div class="section-label reveal-item">About</div>
+        <h2 class="about-title reveal-item">
+          Bridging human intuition and machine intelligence.
+        </h2>
+        <p class="about-text reveal-item delay-1">
+          I'm Alex, a product design leader based in Brisbane, Australia with 17+ years of experience shipping products at scale. I've been designing at the frontier of AI—leading design at Alpaca Markets (2M+ traders) as Director of Design, managing design at Expedia for B2B mobile, and building IoT/ML systems at Redback Technologies. I focus on experiences where the intelligence is invisible and the design does the talking.
+        </p>
+        <p class="about-text reveal-item delay-2">
+          I lead design teams, establish AI UX principles, and work closely with engineers and product leaders to ship AI experiences people can trust.
+        </p>
+        <div class="about-links reveal-item delay-3">
+          <a href="mailto:hello@alexmcmahon.com.au" class="about-link">Email ↗</a>
+          <a href="https://linkedin.com/in/alexmcmahon" target="_blank" rel="noopener" class="about-link">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <div class="stats-grid">
+          <div class="stat reveal-item">
+            <div class="stat-number">17<span class="stat-plus">+</span></div>
+            <div class="stat-label">Years in product design</div>
+          </div>
+          <div class="stat reveal-item delay-1">
+            <div class="stat-number">5<span class="stat-plus">+</span></div>
+            <div class="stat-label">Years in AI/ML products</div>
+          </div>
+          <div class="stat reveal-item delay-2">
+            <div class="stat-number">2M<span class="stat-plus">+</span></div>
+            <div class="stat-label">Users impacted</div>
+          </div>
+          <div class="stat reveal-item delay-3">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Design teams built &amp; led</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== SPEAKING ===================== -->
+  <section class="speaking" id="speaking">
+
+    <div class="speaking-grid">
+
+      <!-- Left: pitch + CTA -->
+      <div class="speaking-left">
+        <div class="section-label reveal-item">Speaking</div>
+        <h2 class="speaking-title reveal-item">
+          I speak on AI,<br />design, and<br />
+          <span class="gradient-text">what comes next.</span>
+        </h2>
+        <p class="speaking-sub reveal-item delay-1">
+          Real experience shipping AI products, brought to your stage, your all-hands, or your team. I make the abstract tangible and leave audiences with something they can actually use.
+        </p>
+
+        <a href="mailto:hello@alexmcmahon.com.au?subject=Speaking%20Enquiry" class="btn-speak reveal-item delay-2">
+          <span class="btn-speak-aurora"></span>
+          <span class="btn-speak-inner">
+            Book Me to Speak
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 10h12M12 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <p class="speak-formats reveal-item delay-3">
+          Conferences &nbsp;·&nbsp; Company all-hands &nbsp;·&nbsp; Team workshops &nbsp;·&nbsp; Panels &nbsp;·&nbsp; Fireside chats
+        </p>
+        <p class="speak-availability" id="speakAvailability"></p>
+
+        <div class="past-engagements reveal-item delay-3">
+          <div class="section-label" style="margin-bottom:1rem;">Upcoming</div>
+          <ul class="engagement-list">
+            <li><a href="https://webdirections.org/aixdesign/" target="_blank" rel="noopener" style="color:inherit;">AI X Design — Web Directions</a></li>
+          </ul>
+        </div>
+
+        <div class="past-engagements reveal-item delay-3">
+          <div class="section-label" style="margin-bottom:1rem;">Past Engagements</div>
+          <ul class="engagement-list">
+            <li>Beyond Games: Exploring the User Experience in the Virtual World</li>
+            <li>Something Digital: Creation, ownership, engagement and monetisation in the metaverse</li>
+            <li>UX Meetups (multiple)</li>
+            <li>Australia Digital Conference</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right: talk list -->
+      <div class="speaking-right reveal-item delay-1">
+        <div class="talks">
+
+          <div class="talk">
+            <div class="talk-header">
+              <span class="talk-num">01</span>
+              <div class="talk-badges">
+                <span class="talk-badge">Keynote</span>
+                <span class="talk-badge">45–60 min</span>
+              </div>
+            </div>
+            <h3 class="talk-title">Designing the AI-Native Experience</h3>
+            <p class="talk-desc">How to design products where AI is invisible and the experience feels like magic, not a chatbot. What great AI UX actually looks like, and why most teams get it wrong.</p>
+          </div>
+
+          <div class="talk">
+            <div class="talk-header">
+              <span class="talk-num">02</span>
+              <div class="talk-badges">
+                <span class="talk-badge">Workshop</span>
+                <span class="talk-badge">90 min</span>
+              </div>
+            </div>
+            <h3 class="talk-title">The LLM Interface Problem</h3>
+            <p class="talk-desc">Why most AI products fail at UX, the interface patterns that actually earn trust, and practical frameworks your team can apply the next day.</p>
+          </div>
+
+          <div class="talk">
+            <div class="talk-header">
+              <span class="talk-num">03</span>
+              <div class="talk-badges">
+                <span class="talk-badge">Fireside / Panel</span>
+                <span class="talk-badge">30–45 min</span>
+              </div>
+            </div>
+            <h3 class="talk-title">Leading Design Teams in the Age of AI</h3>
+            <p class="talk-desc">How AI is reshaping design leadership, what skills matter, how teams should be structured, and where the real opportunities are for designers willing to go deep.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== AI PHILOSOPHY ===================== -->
+  <section class="ai-section" id="ai">
+    <div class="section-header">
+      <h2 class="section-title reveal-item delay-1">
+        Design leadership<br />for the AI era.
+      </h2>
+      <p class="section-sub reveal-item delay-2">
+        17 years in design, with deep specialisation in AI product design,<br />
+        shaping interfaces that make machine intelligence feel human.
+      </p>
+    </div>
+
+    <!-- 3 cards with animated gradient borders -->
+    <div class="ai-cards">
+
+      <div class="ai-card reveal-item">
+        <div class="ai-card-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <circle cx="14" cy="14" r="4" fill="currentColor"/>
+            <circle cx="4" cy="8" r="2.5" fill="currentColor" opacity=".5"/>
+            <circle cx="24" cy="8" r="2.5" fill="currentColor" opacity=".5"/>
+            <circle cx="4" cy="20" r="2.5" fill="currentColor" opacity=".5"/>
+            <circle cx="24" cy="20" r="2.5" fill="currentColor" opacity=".5"/>
+            <line x1="14" y1="10" x2="6" y2="9" stroke="currentColor" stroke-width="1" opacity=".4"/>
+            <line x1="14" y1="10" x2="22" y2="9" stroke="currentColor" stroke-width="1" opacity=".4"/>
+            <line x1="14" y1="18" x2="6" y2="19" stroke="currentColor" stroke-width="1" opacity=".4"/>
+            <line x1="14" y1="18" x2="22" y2="19" stroke="currentColor" stroke-width="1" opacity=".4"/>
+          </svg>
+        </div>
+        <h3 class="ai-card-title">LLM Interface Design</h3>
+        <p class="ai-card-desc">
+          Designing UX patterns for chat, completion, and agentic AI with trust, transparency, and appropriate control built into every interaction.
+        </p>
+        <ul class="ai-card-points">
+          <li>Streaming response UI patterns</li>
+          <li>Error state & hallucination handling</li>
+          <li>Agentic workflow visualisation</li>
+        </ul>
+      </div>
+
+      <div class="ai-card reveal-item delay-1">
+        <div class="ai-card-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <rect x="3" y="3" width="10" height="10" rx="2" fill="currentColor" opacity=".6"/>
+            <rect x="15" y="3" width="10" height="10" rx="2" fill="currentColor" opacity=".4"/>
+            <rect x="3" y="15" width="10" height="10" rx="2" fill="currentColor" opacity=".4"/>
+            <rect x="15" y="15" width="10" height="10" rx="2" fill="currentColor"/>
+            <line x1="13" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+            <line x1="8" y1="13" x2="8" y2="15" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+            <line x1="20" y1="13" x2="20" y2="15" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+            <line x1="13" y1="20" x2="15" y2="20" stroke="currentColor" stroke-width="1.5" opacity=".6"/>
+          </svg>
+        </div>
+        <h3 class="ai-card-title">AI Design Systems</h3>
+        <p class="ai-card-desc">
+          Building component libraries and design systems purpose-built for AI products, covering dynamic content, probabilistic outputs, and real-time generation.
+        </p>
+        <ul class="ai-card-points">
+          <li>Skeleton &amp; streaming components</li>
+          <li>Confidence/uncertainty tokens</li>
+          <li>Multi-modal content patterns</li>
+        </ul>
+      </div>
+
+      <div class="ai-card reveal-item delay-2">
+        <div class="ai-card-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <path d="M14 4C8.477 4 4 8.477 4 14s4.477 10 10 10 10-4.477 10-10S19.523 4 14 4z" stroke="currentColor" stroke-width="1.5" fill="none" opacity=".5"/>
+            <path d="M14 8v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <circle cx="14" cy="14" r="2" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3 class="ai-card-title">Responsible AI UX</h3>
+        <p class="ai-card-desc">
+          Embedding ethics, explainability, and user agency into AI products from day one. The best AI experience is one people can trust.
+        </p>
+        <ul class="ai-card-points">
+          <li>Consent &amp; transparency frameworks</li>
+          <li>Bias mitigation in UI</li>
+          <li>AI feedback loops &amp; correction</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================== AI TOOLS ===================== -->
+  <section class="tools-section">
+    <div class="section-label reveal-item" style="text-align:center; margin-bottom:2rem;">AI Stack</div>
+    <div class="tools-grid reveal-item delay-1">
+      <div class="tool-chip">Claude</div>
+      <div class="tool-chip">GitHub</div>
+      <div class="tool-chip">Gemini</div>
+      <div class="tool-chip">Bolt.new</div>
+      <div class="tool-chip">Figma AI</div>
+      <div class="tool-chip">n8n</div>
+      <div class="tool-chip">Lovable</div>
+      <div class="tool-chip">Perplexity</div>
+      <div class="tool-chip">Zapier</div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED PROJECTS ===================== -->
+  <section class="featured-projects">
+    <div class="section-label reveal-item">Built with AI</div>
+
+    <div class="projects-grid reveal-item delay-1">
+      <div class="project-card">
+        <div class="project-visual project-terminal">
+          <div class="terminal-header">alex@trading-terminal:~$</div>
+          <div class="terminal-content">
+            <div class="terminal-line">TRADING TERMINAL v2.1</div>
+            <div class="terminal-line"><span class="ok">✓</span> binance.com</div>
+            <div class="terminal-line"><span class="ok">✓</span> yahoo finance</div>
+            <div class="terminal-spacer"></div>
+            <div class="terminal-price">QQQ <span class="price">$510.24</span> <span class="gain">+2.4%</span></div>
+            <div class="terminal-price">BTC <span class="price">$98,440</span> <span class="gain">+8.7%</span></div>
+            <div class="terminal-spacer"></div>
+            <div class="terminal-line"><span class="label">P&L:</span> <span class="gain">+$2,840</span></div>
+          </div>
+          <div class="project-overlay-text">01</div>
+          <div class="project-tools">Claude Code • GitHub • TradingView</div>
+          <div class="scanlines"></div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Paper Trading Simulator</h3>
+          <p class="project-role">AI-Prompted Personal Project</p>
+          <p class="project-desc">Fully AI-built day trading simulator with real market data integration</p>
+          <div class="project-metric">Built entirely through AI prompts</div>
+          <a href="https://himynameisalexm.github.io/paper-trading/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="contact" id="contact">
+    <div class="contact-bg-text" aria-hidden="true">Hello</div>
+    <div class="contact-inner">
+      <div class="section-label reveal-item">Get in Touch</div>
+      <h2 class="contact-title reveal-item">
+        Let's shape the future<br />
+        <span class="gradient-text">of intelligent design.</span>
+      </h2>
+      <a href="mailto:hello@alexmcmahon.com.au" class="contact-btn reveal-item delay-1">
+        Say Hello
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 10h12M12 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2024 Alex McMahon</span>
+      <span>Brisbane, Australia</span>
+      <span>alexmcmahon.com.au</span>
+    </div>
+    <div class="footer-disclaimer">This website was built and hosted entirely through Claude Code Prompts.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
