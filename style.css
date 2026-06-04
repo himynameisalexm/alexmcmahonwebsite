@@ -1310,19 +1310,6 @@ a { text-decoration: none; color: inherit; }
   line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-  /* Nav — hide links, keep logo + CTA only to prevent horizontal scroll */
-  .nav-links { display: none; }
-
-  /* Speaking — stack grid and fix padding */
-  .speaking        { padding: 5rem 1.5rem; overflow-x: hidden; }
-  .speaking-grid   { grid-template-columns: 1fr; gap: 3rem; }
-  .speaking-left, .speaking-right { min-width: 0; }
-
-  /* Merch — stack grid */
-  .merch-grid { grid-template-columns: 1fr; gap: 3rem; }
-}
-
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -1658,6 +1645,19 @@ a { text-decoration: none; color: inherit; }
 
 .exp-built-link:hover {
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  /* Nav — hide links, keep logo + CTA only to prevent horizontal scroll */
+  .nav-links { display: none; }
+
+  /* Speaking — stack grid and fix padding */
+  .speaking        { padding: 5rem 1.5rem; overflow-x: hidden; }
+  .speaking-grid   { grid-template-columns: 1fr; gap: 3rem; }
+  .speaking-left, .speaking-right { min-width: 0; }
+
+  /* Merch — stack grid */
+  .merch-grid { grid-template-columns: 1fr; gap: 3rem; }
 }
 
 @media (max-width: 600px) {
