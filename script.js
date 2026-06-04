@@ -162,38 +162,43 @@
 const cursor   = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
 
-let mX = 0, mY = 0, fX = 0, fY = 0;
+// Skip all cursor logic on touch devices
+const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
-document.addEventListener('mousemove', (e) => {
-  mX = e.clientX; mY = e.clientY;
-  cursor.style.transform = `translate(${mX - 5}px, ${mY - 5}px)`;
-});
+if (!isTouchDevice) {
+  let mX = 0, mY = 0, fX = 0, fY = 0;
 
-(function lerpFollower() {
-  fX += (mX - fX) * 0.11;
-  fY += (mY - fY) * 0.11;
-  follower.style.transform = `translate(${fX - 17}px, ${fY - 17}px)`;
-  requestAnimationFrame(lerpFollower);
-})();
-
-// Expand on links/buttons
-document.querySelectorAll('a, button, .tool-chip').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('hovered');
-    follower.classList.add('hovered');
+  document.addEventListener('mousemove', (e) => {
+    mX = e.clientX; mY = e.clientY;
+    cursor.style.transform = `translate(${mX - 5}px, ${mY - 5}px)`;
   });
-  el.addEventListener('mouseleave', () => {
-    cursor.classList.remove('hovered');
-    follower.classList.remove('hovered');
-  });
-});
 
-document.addEventListener('mouseleave', () => {
-  cursor.style.opacity = '0'; follower.style.opacity = '0';
-});
-document.addEventListener('mouseenter', () => {
-  cursor.style.opacity = '1'; follower.style.opacity = '1';
-});
+  (function lerpFollower() {
+    fX += (mX - fX) * 0.11;
+    fY += (mY - fY) * 0.11;
+    follower.style.transform = `translate(${fX - 17}px, ${fY - 17}px)`;
+    requestAnimationFrame(lerpFollower);
+  })();
+
+  // Expand on links/buttons
+  document.querySelectorAll('a, button, .tool-chip').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('hovered');
+      follower.classList.add('hovered');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hovered');
+      follower.classList.remove('hovered');
+    });
+  });
+
+  document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0'; follower.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1'; follower.style.opacity = '1';
+  });
+}
 
 
 // ============================================================
