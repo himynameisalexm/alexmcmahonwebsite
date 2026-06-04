@@ -163,7 +163,10 @@ const cursor   = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
 
 // Skip all cursor logic on touch devices
-const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+const isTouchDevice = window.matchMedia('(pointer: coarse)').matches
+  || window.matchMedia('(hover: none)').matches
+  || ('ontouchstart' in window)
+  || navigator.maxTouchPoints > 0;
 
 if (!isTouchDevice) {
   let mX = 0, mY = 0, fX = 0, fY = 0;
