@@ -1860,7 +1860,7 @@ a { text-decoration: none; color: inherit; }
    ============================================================ */
 
 /* Touch devices — disable custom cursor */
-@media (pointer: coarse), (hover: none) {
+@media (pointer: coarse) {
   body { cursor: auto; }
   .cursor, .cursor-follower { display: none !important; }
 }
