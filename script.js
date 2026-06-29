@@ -174,7 +174,7 @@ toolChips.forEach(chip => {
   chip.style.transition = 'opacity 0.45s cubic-bezier(0.16,1,0.3,1), transform 0.45s cubic-bezier(0.16,1,0.3,1)';
 });
 
-const toolsSection = document.querySelector('.tools-section');
+const toolsSection = document.querySelector('.ai-stack') || document.querySelector('.tools-section');
 if (toolsSection) toolObserver.observe(toolsSection);
 
 
