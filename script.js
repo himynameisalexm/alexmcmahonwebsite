@@ -207,30 +207,32 @@ if (yearEl) yearEl.textContent = `# ${new Date().getFullYear()} alex mcmahon`;
 
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.dataset.counted) {
-        entry.target.dataset.counted = 'true';
+      if (!entry.isIntersecting || entry.target.dataset.counted) return;
+      entry.target.dataset.counted = 'true';
 
-        const text = entry.target.textContent.trim();
-        const match = text.match(/(\d+)/);
-        if (!match) return;
+      // Target the leading text node so child spans (e.g. .stat-plus) are preserved
+      const textNode = Array.from(entry.target.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+      if (!textNode) return;
 
-        const target = parseInt(match[1], 10);
-        const duration = 900;
-        let start = 0;
-        const increment = target / (duration / 16);
+      const original = textNode.nodeValue.trim();
+      const match = original.match(/(\d+)/);
+      if (!match) return;
 
-        const timer = setInterval(() => {
-          start += increment;
-          if (start >= target) {
-            entry.target.textContent = text;
-            clearInterval(timer);
-          } else {
-            entry.target.textContent = Math.floor(start) + text.replace(/\d+/g, '');
-          }
-        }, 16);
+      const target = parseInt(match[1], 10);
+      const duration = 1100;
+      const startTime = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        textNode.nodeValue = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+        else textNode.nodeValue = original;
       }
+
+      requestAnimationFrame(tick);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.3 });
 
   counters.forEach(counter => counterObserver.observe(counter));
 })();
