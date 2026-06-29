@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LMG Case Study — Alex McMahon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">AM</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">← Back to Case Studies</a>
+    </div>
+    <a href="mailto:hello@alexmcmahon.com.au" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="case-study-hero">
+    <div class="case-study-hero-content">
+      <div class="case-study-label reveal-item">Case Study · Loan Market Group</div>
+      <h1 class="case-study-title reveal-item">Designing AI Brokers Can Trust</h1>
+      <p class="case-study-meta reveal-item delay-1">
+        Head of Design · MyCRM Intelligence · AI in Regulated Finance
+      </p>
+    </div>
+  </section>
+
+  <article class="case-study-content">
+
+    <!-- OVERVIEW -->
+    <section class="case-study-section">
+      <h2>Overview</h2>
+      <p>
+        LMG (Loan Market Group) is Australia and New Zealand's largest mortgage aggregator — 6,000+ brokers and advisers, a $370B loan book, $143B settled in 2025 alone. MyCRM is the #1 broker software platform in AU/NZ, as voted by brokers themselves.
+      </p>
+      <p>
+        As Head of Design, I led the design of <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link">MyCRM Intelligence</a> — LMG's embedded AI suite — and shipped the platform's first AI tools to every broker in the business. I built LMG's first AI research department from scratch, authored the design standard governing how AI behaves across the entire platform, and won a landmark compliance design decision that set a new precedent for AI disclosure in regulated financial services.
+      </p>
+      <p>
+        In 2025, my team won the <strong>Tribe Award at LMG's Sync Up</strong> — company-wide recognition for being the first to ship AI products on the MyCRM platform.
+      </p>
+      <div class="case-study-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Audience</span>
+          <span class="meta-value">6,000+ mortgage brokers & advisers</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Team</span>
+          <span class="meta-value">8 designers + Senior Researcher</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Head of Design</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE CHALLENGE -->
+    <section class="case-study-section">
+      <h2>The Challenge</h2>
+      <p>
+        LMG's Group Executive of Product, Tech and Data <a href="https://www.mpamag.com/au/mortgage-industry/technology/hightech-hightouch-lmgs-vision-of-the-augmented-broker/567160" target="_blank" rel="noopener" class="cs-link">put it plainly at the 2026 Growth Summit</a>: <em>"Between 95% and 98% of companies aren't proving ROI in their AI rollout."</em> LMG was determined not to be in that majority. But the challenge wasn't just proving business value — it was navigating one of the hardest design contexts for AI: a highly regulated, high-stakes industry where a poorly framed suggestion could lead to non-compliant advice, client harm, and professional liability.
+      </p>
+      <p>
+        Mortgage brokers operate under ASIC and the National Consumer Credit Protection Act (NCCP). Every recommendation they make — and every document they lodge — carries legal weight. As LMG's Chief Risk Officer noted at the same summit: <em>"Non-compliance is now the most expensive way to run a business."</em> Introducing AI into that context meant designing for trust, accountability, and auditability simultaneously. It wasn't a UX challenge. It was a regulatory challenge wearing UX clothes.
+      </p>
+      <p>
+        At the same time, the opportunity was real. Brokers were spending hours per client on documentation — drafting rationales, checking applications for risk, managing compliance paperwork. If we could design AI that actually earned trust in this environment, it would be transformative. If we got it wrong, the consequences would be felt by real people's finances.
+      </p>
+    </section>
+
+    <!-- DESIGN STRATEGY -->
+    <section class="case-study-section">
+      <h2>Design Strategy & Leadership</h2>
+      <p>
+        I set the design vision on a single principle: <strong>the broker is always the author.</strong> AI can draft, surface, and flag — but the broker reviews, edits, and owns every output. This isn't just a UX stance; it's the answer to the accountability question that regulators ask. If something goes wrong, a human was the author at every critical step. As Whitney Cali <a href="https://www.brokerdaily.au/technology/21325-lmg-reveals-ai-roadmap-focused-on-broker-efficiency" target="_blank" rel="noopener" class="cs-link">later described the product vision</a>: <em>"Brokers are still driving the car, but the AI is helping you get to your destination."</em>
+      </p>
+      <p>
+        That principle cascaded into every design decision across the platform. But the work I'm most proud of goes beyond a design principle — it's the systems I built to make it real at scale.
+      </p>
+
+      <h3 class="case-study-subheading">The 13-Category Agentic AI Pattern Library</h3>
+      <p>
+        I authored LMG's Agentic AI Pattern Library — 13 categories of design standards governing how AI behaves across every surface of MyCRM Intelligence. It covers confidence signalling, progressive disclosure, error recovery, contestability, and human-override states. It was written to pre-empt the Australian Government DTA's AI standards on explainability and contestability before those standards were formalised — so when regulation arrived, we were already compliant.
+      </p>
+      <p>
+        This pattern library is now the design constitution for everything AI at LMG. New features don't get built without it.
+      </p>
+
+      <h3 class="case-study-subheading">Winning the ASIC/NCCP Compliance Design Decision</h3>
+      <p>
+        The most consequential design decision I made wasn't a layout choice — it was a regulatory argument. Legal and compliance initially required a mandatory checkbox at the point of every AI interaction: a standard CYA disclosure. I argued against it.
+      </p>
+      <p>
+        The mandatory checkbox would have trained brokers to dismiss AI outputs without reading them — eroding the very trust we were trying to build. Instead, I proposed contextual disclosure at the moment of consequence: when a broker copies an AI-generated note into their application, that's when they're told they're using AI-generated content. At the exact moment it matters, not before.
+      </p>
+      <p>
+        The argument was accepted. That contextual disclosure pattern is now reused across the entire MyCRM agent suite — a design-led precedent for how AI disclosure should work in regulated financial services.
+      </p>
+
+      <h3 class="case-study-subheading">Building LMG's First AI Research Department</h3>
+      <p>
+        There was no research function when I arrived. I built it from scratch — establishing the methodology, tooling, and team to run structured research with the MyCRM user base. My team ran the largest user research study ever conducted with MyCRM users, with findings that directly reshaped the AI roadmap and influenced executive prioritisation.
+      </p>
+      <p>
+        That research function became the feedback loop that kept every AI feature grounded in what brokers actually needed — not what we assumed they needed.
+      </p>
+
+      <h3 class="case-study-subheading">A New Measurement Framework for AI UX</h3>
+      <p>
+        Most teams measure AI success with adoption and thumbs-up rates. That's not enough to understand trust — and in a regulated industry, trust is the product. I developed a 13-behaviour UX measurement framework tracked in Pendo, designed to answer the question no standard analytics dashboard asks: <em>are brokers actually trusting this?</em>
+      </p>
+      <ul class="case-study-list">
+        <li><strong>Copy Response Rate as a trust proxy:</strong> When a broker copies an AI output into their notes, we treat that as a strong signal of trust. We benchmarked >30% of thumbs-up sessions should include a copy action. If copy rate is high but thumbs-up is low, something's wrong with the UI — not the AI.</li>
+        <li><strong>Citation Sources Click-Through Rate:</strong> How often do brokers click through to verify the AI's source? We expect high engagement early, then a drop-off as trust is established. That curve is the shape of calibrated trust. If it doesn't drop, brokers are over-verifying — a signal that the AI's confidence presentation is wrong.</li>
+        <li><strong>Latency-to-Sentiment Correlation:</strong> We map response wait time against thumbs up/down to locate the broker's "Frustration Threshold." This directly informs the Chain of Thought microcopy — the in-progress messaging that keeps brokers engaged during longer retrievals. Benchmark: flat sentiment curve even when responses exceed 120 seconds.</li>
+        <li><strong>WAU & Stickiness — the "novelty to necessity" test:</strong> The defining question for any AI feature: did brokers use it once and forget it, or does it come back every client? We benchmarked >80% of pilot users returning to the tool for each new client in the researching phase. That's the threshold between novelty and workflow dependency.</li>
+      </ul>
+    </section>
+
+    <!-- PROCESS & OUTCOMES -->
+    <section class="case-study-section">
+      <h2>Process & Outcomes</h2>
+      <p>
+        We launched <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link"><strong>My Note Writer</strong></a> first — an AI assistant that automatically drafts lender rationales, product selection notes, and exit strategies from data already in the broker's application file. Outputs are structured, editable, and BID-ready (Best Interests Duty compliant) — giving brokers a compliant foundation for every submission in seconds.
+      </p>
+
+      <div class="case-study-quote">
+        <blockquote>"This would take me 20 minutes to write, now it's done in seconds."</blockquote>
+        <cite>— <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link">Dustin McMahon, LMG broker</a></cite>
+      </div>
+
+      <div class="case-study-quote">
+        <blockquote>"It speaks better than I do."</blockquote>
+        <cite>— <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link">Renee Menzies, LMG broker</a></cite>
+      </div>
+
+      <p>
+        <strong>My Quality Assurance</strong> followed — an AI tool that reviews loan applications across 500+ data points before lodgement, flagging missing information, funding gaps, and potential product mismatches. The design challenge here was cultural as much as functional: brokers initially read a "QA review" as a suggestion that their work wasn't good enough. The reframe that landed was positioning My QA as a second set of expert eyes — a compliance coach, not a critic.
+      </p>
+      <p>
+      <div class="case-study-quote">
+        <blockquote>"I don't fear AI. The future for established brokerages is becoming tech-based relationship businesses."</blockquote>
+        <cite>— <a href="https://www.brokerdaily.au/technology/21325-lmg-reveals-ai-roadmap-focused-on-broker-efficiency" target="_blank" rel="noopener" class="cs-link">Matthew Atkin, Atlas Broker</a></cite>
+      </div>
+
+      <p>
+        Both tools were piloted with 100+ brokers across Australia and New Zealand before company-wide release. Adoption grew from launch in December 2024 to approximately <strong>35% of all users by mid-2026</strong> — scaling alongside continuous quality improvements driven by the measurement framework. As <a href="https://www.mpamag.com/au/mortgage-industry/technology/lmg-launches-embedded-ai-tools-in-mycrm/558390" target="_blank" rel="noopener" class="cs-link">Whitney Cali stated at launch</a>: <em>"Our goal is to make every broker an augmented broker: empowered by technology, supported by data, and always in control."</em>
+      </p>
+      <p>
+        I also led the commercial strategy for MyCRM Intelligence — building the pricing and packaging model to turn the AI suite from an included feature into a revenue-generating product tier. Design leadership extended into commercial strategy: how should AI be packaged, priced, and positioned for a business of 6,000 brokers with varying needs and sophistication?
+      </p>
+
+      <div class="case-study-metrics">
+        <div class="metric-card">
+          <div class="metric-value">35%</div>
+          <div class="metric-label">Platform-wide AI adoption by mid-2026</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">500+</div>
+          <div class="metric-label">Data points reviewed by My QA per application</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">13</div>
+          <div class="metric-label">Category AI pattern library authored</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">$370B</div>
+          <div class="metric-label">Loan book on the platform</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFLECTION -->
+    <section class="case-study-section">
+      <h2>Reflection & Impact</h2>
+      <p>
+        The ASIC disclosure win changed how I think about design leadership. The most impactful design decision on this project wasn't a layout, an animation, or an information architecture choice — it was a regulatory argument made in a meeting with legal and compliance. Design leaders in AI have to be willing to own those conversations. If we leave regulatory decisions to lawyers and compliance teams without a design voice, we get AI that's compliant but unusable. The two have to be designed together.
+      </p>
+      <p>
+        The measurement framework taught me that most teams are measuring the wrong things. Adoption tells you brokers opened the feature. Thumbs-up tells you they liked an output. Neither tells you whether they trust the AI enough to act on it. Copy rate, citation verification, latency-sentiment correlation — these are the signals that tell you whether you've built something that earns the right to be used in a consequential context.
+      </p>
+      <p>
+        And the Tribe Award matters more to me than any individual metric. It was the team that won it — eight designers who had to figure out, largely from first principles, what responsible AI design looks like in a regulated industry. That's the work I'm most proud of enabling.
+      </p>
+    </section>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2025 Alex McMahon</span>
+      <span>Brisbane, Australia</span>
+      <span>alexmcmahon.com.au</span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

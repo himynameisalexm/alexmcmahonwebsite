@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alpaca Markets Case Study — Alex McMahon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">AM</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">← Back to Case Studies</a>
+    </div>
+    <a href="mailto:hello@alexmcmahon.com.au" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="case-study-hero">
+    <div class="case-study-hero-content">
+      <div class="case-study-label reveal-item">Case Study · Alpaca Markets</div>
+      <h1 class="case-study-title reveal-item">Design Direction for a $1.15B Fintech</h1>
+      <p class="case-study-meta reveal-item delay-1">
+        Director of Design · API-First Brokerage · Options · Self-Clearing · Global
+      </p>
+    </div>
+  </section>
+
+  <article class="case-study-content">
+
+    <!-- OVERVIEW -->
+    <section class="case-study-section">
+      <h2>Overview</h2>
+      <p>
+        Alpaca Markets is an API-first, self-clearing broker-dealer powering 200+ fintech partners across 40+ countries. During my tenure as Director of Design, the company raised $120M+, backed by Spark Capital, Tribe Capital, Horizons Ventures and Y Combinator. Alpaca now sits at a $1.15B valuation with $170M+ raised.
+      </p>
+      <p>
+        I led a global team of 8 across product design, brand marketing and an embedded front-end developer — owning UX strategy across three distinct verticals simultaneously: algorithmic trading developer tools, B2B broker infrastructure serving markets in Australia, Japan and Saudi Arabia, and an internal self-clearing platform managing millions of daily trades. I also contributed to the investor narrative supporting Alpaca's capital raises, translating design quality into a commercial story.
+      </p>
+      <div class="case-study-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Team</span>
+          <span class="meta-value">8 globally across design, brand & front-end</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Scale</span>
+          <span class="meta-value">200+ partners · 40+ countries</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Director of Design</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE CHALLENGE -->
+    <section class="case-study-section">
+      <h2>The Challenge</h2>
+      <p>
+        Alpaca's architecture creates a layered design problem. The platform serves two fundamentally different audiences simultaneously: retail investors and algo traders who use Alpaca directly, and the 200+ fintech companies that build trading products on top of Alpaca's API infrastructure. Every design decision has to work at both layers — sophisticated enough for a quant writing Python execution strategies, accessible enough for the retail investor onboarded through a partner app in Riyadh or Tokyo.
+      </p>
+      <p>
+        The two major product initiatives during my tenure made this complexity concrete. Launching Options trading added an entirely new asset class with multi-leg strategies, real-time Greeks, risk visualisation, and distinct regulatory requirements across each market. The self-clearing transition — moving trade settlement in-house at DTCC — required building internal operations tooling that could surface and resolve failed trades under significant time pressure.
+      </p>
+      <p>
+        Both projects required the same thing: design that communicated power without creating cognitive paralysis.
+      </p>
+    </section>
+
+    <!-- DESIGN STRATEGY -->
+    <section class="case-study-section">
+      <h2>Design Strategy & Leadership</h2>
+      <p>
+        My design direction across Alpaca was anchored in a principle I'd describe as <strong>legible power</strong> — making genuinely sophisticated financial infrastructure feel navigable without dumbing it down. The moment you simplify away the complexity, you've lost the users who need it most. The art is in information architecture, not information reduction.
+      </p>
+
+      <h3 class="case-study-subheading">Options Trading — Multi-Market, Multi-Audience Launch</h3>
+      <p>
+        I owned end-to-end UX for the global Options launch: multi-leg strategy builders, real-time Greeks displays, risk visualisation, broker-facing API documentation, and the options application and suitability flow. The design challenge was that our audience ranged from professional quantitative traders running automated strategies to retail investors taking their first steps into options through a B2B partner like Spaceship, Dime or GoTrade.
+      </p>
+      <p>
+        The solution was a progressive permission architecture. The interface surfaced capabilities matched to the user's approved trading level — a Level 1 trader sees covered calls and protective puts, a Level 3 trader sees multi-leg strategies and custom Greeks dashboards. Same underlying system, different surfaces. Complexity was earned through the suitability process, not hidden.
+      </p>
+      <p>
+        I ran direct research sessions with algorithmic traders throughout the design process. This was non-negotiable: algo traders have mental models about options that are entirely different from retail UX assumptions. Without direct access to them, we would have built something that looked right and worked wrong.
+      </p>
+
+      <h3 class="case-study-subheading">Self-Clearing — Internal Tools Under Operational Pressure</h3>
+      <p>
+        Self-clearing meant Alpaca managing its own trade settlement at DTCC — processing millions of trades daily and catching failures before they compounded. The internal operations tooling that supported this was cluttered and inefficient. I applied the same design rigour to the internal tool as to any customer-facing product: ruthless information hierarchy, contextual actions, and interfaces designed for people under time pressure.
+      </p>
+      <p>
+        The redesigned interface surfaced failed trades more clearly, provided resolution actions in context, and dramatically reduced the cognitive load on operations staff during high-volume sessions.
+      </p>
+
+      <h3 class="case-study-subheading">Global Product Design — 40+ Country Considerations</h3>
+      <p>
+        Designing for users across 40+ countries with distinct regulatory, cultural and UX requirements required building that thinking into the design process rather than treating localisation as a retrofit. B2B broker infrastructure in Australia looked different from Japan or Saudi Arabia — regulatory disclosure requirements, right-to-left considerations, trust signals, and onboarding conventions all varied. I established a design review process that pressure-tested every new surface against the markets it would serve before shipping.
+      </p>
+
+      <h3 class="case-study-subheading">Design as an Investor Asset</h3>
+      <p>
+        I contributed directly to Alpaca's investor narrative during capital raises — translating design quality, UX strategy and product differentiation into language that resonated with institutional investors. Design was part of the commercial story, not a footnote to the engineering deck.
+      </p>
+    </section>
+
+    <!-- PROCESS & OUTCOMES -->
+    <section class="case-study-section">
+      <h2>Process & Outcomes</h2>
+      <p>
+        Options launched in 2024 following an extended beta with algorithmic trading partners. The beta surfaced several significant design pivots — including a full rethink of how multi-leg strategy risk was visualised, which our initial approach got badly wrong. The direct research loop caught it early. The launch included a fully redesigned options chain, strategy builder, suitability application, and co-designed API documentation for developer partners.
+      </p>
+      <p>
+        Self-clearing tooling shipped and immediately reduced the time required to identify and resolve settlement failures. The simplified interface allowed operations staff to work faster with fewer errors during the trading session windows that mattered most.
+      </p>
+      <p>
+        Alpaca was named <strong>Best API Solution</strong> at the Benzinga Fintech Awards 2023 and <strong>Best API</strong> at Postman's POST/CON 2024 — external recognition that reflected both engineering and design quality working in tandem. Trading volume quadrupled from late 2023 to 2024, enabled in part by the Options launch expanding Alpaca's total addressable market and the operational confidence that self-clearing provided.
+      </p>
+
+      <div class="case-study-metrics">
+        <div class="metric-card">
+          <div class="metric-value">$1.15B</div>
+          <div class="metric-label">Company valuation post-tenure</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">200+</div>
+          <div class="metric-label">Fintech partners in 40+ countries</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">4×</div>
+          <div class="metric-label">Trading volume growth 2023–2024</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">2×</div>
+          <div class="metric-label">Industry best API awards won</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFLECTION -->
+    <section class="case-study-section">
+      <h2>Reflection & Impact</h2>
+      <p>
+        The Options project is the clearest example I have of why design research isn't optional in complex financial products. Algorithmic traders operate with a completely different mental model of risk, position management and interface expectations than standard UX personas assume. Our initial designs were built on wrong assumptions. Direct access to users caught that early. Without the research, we would have shipped something that looked functional and failed in practice.
+      </p>
+      <p>
+        Managing a global team across product design, brand marketing and engineering simultaneously taught me that design directors need a commercial fluency that goes beyond craft. I was in investor conversations, partnership discussions and revenue strategy sessions — representing design as a business capability, not a service function. That's the scope where I believe design leadership creates the most durable value.
+      </p>
+      <p>
+        The work that outlasted my time at Alpaca — the design system, the Options UX patterns, the global market review process — that's the measure I care about. When the team builds the next thing without me and it still reflects the thinking we established together, the leadership worked.
+      </p>
+    </section>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2025 Alex McMahon</span>
+      <span>Brisbane, Australia</span>
+      <span>alexmcmahon.com.au</span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
