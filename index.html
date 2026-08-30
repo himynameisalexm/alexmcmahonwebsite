@@ -648,7 +648,8 @@
 
     .draw-hint.show { animation: fadeIn 1.5s forwards; }
 
-    @media (pointer: coarse) { .draw-hint { display: none; } }
+    .draw-hint .hint-mobile { display: none; }
+    @media (pointer: coarse) { .draw-hint .hint-desktop { display: none; } .draw-hint .hint-mobile { display: inline; } }
 
     /* ===================== DRAW CANVAS ===================== */
     .draw-canvas {
@@ -670,7 +671,8 @@
 
   <div class="draw-hint" aria-hidden="true">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-    <span>click + drag to draw</span>
+    <span class="hint-desktop">click + drag to draw</span>
+    <span class="hint-mobile">hold + drag to draw</span>
   </div>
 
   <!-- ===================== HERO ===================== -->
@@ -939,12 +941,11 @@
 
     // Background drawing easter egg
     (function initDrawCanvas() {
-      if (window.matchMedia('(pointer: coarse)').matches) return;
-
       const canvas = document.getElementById('drawCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let dpr = window.devicePixelRatio || 1;
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
       const segments = [];
       let drawing = false;
@@ -952,6 +953,8 @@
       const drawHint = document.querySelector('.draw-hint');
       const FADE_MS = 4000;
       const STROKE_W = 4;
+      const HOLD_MS = 400;
+      const HOLD_MOVE_THRESH = 10;
 
       function resize() {
         dpr = window.devicePixelRatio || 1;
@@ -964,6 +967,19 @@
 
       if (drawHint) setTimeout(() => drawHint.classList.add('show'), 4000);
 
+      function addSegment(x, y) {
+        const dx = x - lastX, dy = y - lastY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 2) return;
+        totalDist += dist;
+        hue = (totalDist * 0.8) % 360;
+        segments.push({ x1: lastX, y1: lastY, x2: x, y2: y, hue, born: performance.now() });
+        lastX = x;
+        lastY = y;
+        if (!animating) startLoop();
+      }
+
+      // Desktop: click + drag
       document.addEventListener('mousedown', (e) => {
         if (e.target.closest('a, button, input, textarea, select')) return;
         e.preventDefault();
@@ -971,28 +987,57 @@
         lastX = e.pageX;
         lastY = e.pageY;
       });
-
-      document.addEventListener('mousemove', (e) => {
-        if (!drawing) return;
-        const x = e.pageX, y = e.pageY;
-        const dx = x - lastX, dy = y - lastY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 2) return;
-        totalDist += dist;
-        hue = (totalDist * 0.8) % 360;
-        segments.push({
-          x1: lastX, y1: lastY, x2: x, y2: y,
-          hue, born: performance.now()
-        });
-        lastX = x;
-        lastY = y;
-        if (!animating) startLoop();
-      });
-
+      document.addEventListener('mousemove', (e) => { if (drawing) addSegment(e.pageX, e.pageY); });
       document.addEventListener('mouseup', () => { drawing = false; });
       document.addEventListener('mouseleave', () => { drawing = false; });
 
-      // Redraw on scroll so strokes move with the page
+      // Mobile: long-press + drag
+      let holdTimer = null;
+      let touchStartX, touchStartY;
+
+      document.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        if (e.target.closest('a, button, input, textarea, select')) return;
+        const t = e.touches[0];
+        touchStartX = t.pageX;
+        touchStartY = t.pageY;
+        holdTimer = setTimeout(() => {
+          holdTimer = null;
+          drawing = true;
+          lastX = touchStartX;
+          lastY = touchStartY;
+          // Pulse hint to signal draw mode activated
+          if (drawHint) {
+            drawHint.style.color = 'var(--gray-500)';
+            setTimeout(() => drawHint.style.color = '', 600);
+          }
+        }, HOLD_MS);
+      }, { passive: true });
+
+      document.addEventListener('touchmove', (e) => {
+        const t = e.touches[0];
+        if (holdTimer) {
+          const dx = t.pageX - touchStartX, dy = t.pageY - touchStartY;
+          if (Math.sqrt(dx * dx + dy * dy) > HOLD_MOVE_THRESH) {
+            clearTimeout(holdTimer);
+            holdTimer = null;
+          }
+          return;
+        }
+        if (!drawing) return;
+        e.preventDefault();
+        addSegment(t.pageX, t.pageY);
+      }, { passive: false });
+
+      document.addEventListener('touchend', () => {
+        if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
+        drawing = false;
+      });
+      document.addEventListener('touchcancel', () => {
+        if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
+        drawing = false;
+      });
+
       window.addEventListener('scroll', () => {
         if (segments.length && !animating) startLoop();
       }, { passive: true });
@@ -1014,10 +1059,8 @@
           const s = segments[i];
           const age = now - s.born;
           if (age > FADE_MS) { segments.splice(i, 1); continue; }
-          // Convert page coords to viewport coords
           const x1 = s.x1 - sx, y1 = s.y1 - sy;
           const x2 = s.x2 - sx, y2 = s.y2 - sy;
-          // Skip if fully off-screen
           if (Math.max(x1,x2) < -10 || Math.min(x1,x2) > vw+10 ||
               Math.max(y1,y2) < -10 || Math.min(y1,y2) > vh+10) continue;
           const alpha = 1 - age / FADE_MS;
