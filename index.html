@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex McMahon — AI Design Leader</title>
+  <title>Alex McMahon — UX Leader & AI Builder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -62,6 +62,8 @@
       transform: translateY(16px);
       animation: fadeUp 0.8s 0.3s forwards;
     }
+    .hero-label a { color: var(--gray-400); border-bottom: 1px solid var(--gray-300); transition: border-color 0.3s, color 0.3s; }
+    .hero-label a:hover { color: var(--black); border-color: var(--black); }
 
     .hero-title {
       font-family: var(--serif);
@@ -140,10 +142,8 @@
     }
 
     .hero-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
       margin-top: 56px;
+      max-width: 540px;
       opacity: 0;
       animation: fadeUp 1s 1.2s forwards;
     }
@@ -267,54 +267,28 @@
       margin-bottom: 32px;
     }
 
-    /* ===================== ABOUT ===================== */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 100px;
-      align-items: start;
-    }
-
-    .about-text {
-      font-size: 16px;
+    .hero-bio {
+      font-size: 15px;
       font-weight: 300;
-      line-height: 1.9;
-      color: var(--gray-700);
-      margin-bottom: 24px;
+      line-height: 1.8;
+      color: var(--gray-500);
+      max-width: 540px;
+      margin-top: 20px;
     }
 
-    .about-text a {
-      color: var(--black);
-      font-weight: 500;
+    .hero-bio a {
+      color: var(--gray-700);
+      font-weight: 400;
       border-bottom: 1px solid var(--gray-300);
       transition: border-color 0.3s;
     }
 
-    .about-text a:hover { border-color: var(--black); }
+    .hero-bio a:hover { border-color: var(--black); color: var(--black); }
 
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      padding-top: 20px;
-    }
-
-    .about-stat-num {
-      font-family: var(--serif);
-      font-size: 48px;
-      line-height: 1;
-    }
-
-    .about-stat-label {
-      font-size: 13px;
-      color: var(--gray-500);
-      margin-top: 6px;
-    }
-
-    .about-links {
+    .hero-links {
       display: flex;
       gap: 28px;
-      margin-top: 48px;
+      margin-top: 32px;
     }
 
     .about-link {
@@ -619,12 +593,9 @@
 
     /* ===================== RESPONSIVE ===================== */
     @media (max-width: 768px) {
-      .hero-bottom { flex-direction: column; gap: 32px; align-items: flex-start; }
       .stats { flex-wrap: wrap; }
       .stat { flex: 1 1 50%; }
       .stat:nth-child(2) { border-right: none; }
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-stats { gap: 24px; }
       .ai-cards { grid-template-columns: 1fr; }
       .speaking-cols { grid-template-columns: 1fr; gap: 48px; }
       .build-cards { grid-template-columns: 1fr; }
@@ -677,16 +648,23 @@
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="hero">
-    <div class="hero-label">Head of Design · Sunshine Coast, Australia</div>
+    <div class="hero-label">Head of Design at <a href="https://www.loanmarketgroup.com/" target="_blank" rel="noopener">LMG</a> · Sunshine Coast, Australia</div>
 
     <h1 class="hero-title">
       <span class="line"><span class="line-inner shimmer">Alex McMahon,</span></span>
-      <span class="line"><span class="line-inner shimmer"><em class="italic">AI Leader</em></span></span>
-      <span class="line"><span class="line-inner shimmer">and Builder.</span></span>
+      <span class="line"><span class="line-inner shimmer"><em class="italic">User Experience</em></span></span>
+      <span class="line"><span class="line-inner shimmer"><em class="italic">Leader</em> and</span></span>
+      <span class="line"><span class="line-inner shimmer">AI Builder.</span></span>
     </h1>
 
     <div class="hero-bottom">
-      <p class="hero-sub">17 years making complex technology feel human — across design leadership, AI product design, and 0→1 launches.</p>
+      <p class="hero-sub">18 years making complex problems feel more human — across design leadership, AI product design, and 0→1 launches.</p>
+      <p class="hero-bio">I've led design organisations at <a href="https://www.newscorpaustralia.com/" target="_blank" rel="noopener">News Corp</a>, <a href="https://www.expediagroup.com/" target="_blank" rel="noopener">Expedia</a>, <a href="https://www.marketingdive.com/news/budweiser-zed-run-sponsorship-clydesdales-nft-metaverse/625192/" target="_blank" rel="noopener">Virtually Human Studio</a>, <a href="https://www.pv-magazine-australia.com/2024/10/16/redback-reveals-next-gen-home-battery-and-inverter-range/" target="_blank" rel="noopener">Redback Technologies</a>, <a href="https://fortune.com/2026/01/14/alpaca-fundraise-series-d-brokerage-infrastructure/" target="_blank" rel="noopener">Alpaca Markets</a> and <a href="https://www.mpamag.com/au/mortgage-industry/technology/lmg-launches-embedded-ai-tools-in-mycrm/558390" target="_blank" rel="noopener">Loan Market Group</a> — managing designers, design managers, 3D artists and front-end engineers across three continents.</p>
+      <div class="hero-links">
+        <a href="mailto:hello@alexmcmahon.com.au" class="about-link">Email ↗</a>
+        <a href="https://linkedin.com/in/alexmcmahon" target="_blank" rel="noopener" class="about-link">LinkedIn ↗</a>
+        <a href="https://himynameisalexm.substack.com/" target="_blank" rel="noopener" class="about-link">Substack ↗</a>
+      </div>
     </div>
 
     <div class="hero-scroll" aria-hidden="true">
@@ -698,38 +676,12 @@
 
   <!-- ===================== STATS ===================== -->
   <div class="stats">
-    <div class="stat"><div class="stat-num" data-target="17">0</div><div class="stat-desc">Years leading design</div></div>
+    <div class="stat"><div class="stat-num" data-target="18">0</div><div class="stat-desc">Years in UX design</div></div>
     <div class="stat"><div class="stat-num" data-target="6">0</div><div class="stat-desc">Industries shipped in</div></div>
     <div class="stat"><div class="stat-num" data-text="Millions">Millions</div><div class="stat-desc">Users reached</div></div>
     <div class="stat"><div class="stat-num" data-target="20">0</div><div class="stat-desc">Designers hired</div></div>
   </div>
 
-  <!-- ===================== ABOUT ===================== -->
-  <section class="section" id="about">
-    <div class="about-grid">
-      <div>
-        <div class="section-eyebrow reveal">About</div>
-        <h2 class="section-title shimmer reveal d1">Designing since 2009.</h2>
-        <p class="about-text reveal d2">
-          I'm Alex — a design leader who builds AI products people can trust. I've led design organisations at <a href="https://www.newscorpaustralia.com/" target="_blank" rel="noopener">News Corp</a>, <a href="https://www.expediagroup.com/" target="_blank" rel="noopener">Expedia</a>, <a href="https://www.marketingdive.com/news/budweiser-zed-run-sponsorship-clydesdales-nft-metaverse/625192/" target="_blank" rel="noopener">Virtually Human Studio</a>, <a href="https://www.pv-magazine-australia.com/2024/10/16/redback-reveals-next-gen-home-battery-and-inverter-range/" target="_blank" rel="noopener">Redback Technologies</a>, <a href="https://fortune.com/2026/01/14/alpaca-fundraise-series-d-brokerage-infrastructure/" target="_blank" rel="noopener">Alpaca Markets</a> and <a href="https://www.mpamag.com/au/mortgage-industry/technology/lmg-launches-embedded-ai-tools-in-mycrm/558390" target="_blank" rel="noopener">Loan Market Group</a> — managing designers, design managers, 3D artists and front-end engineers across three continents.
-        </p>
-        <p class="about-text reveal d3">
-          Along the way I've shipped a company's first AI assistants to its entire user base, authored a 13-category agentic-AI pattern library, built AI research functions from scratch, and led design through regulation, compliance and 0→1 launches.
-        </p>
-        <div class="about-links reveal d4">
-          <a href="mailto:hello@alexmcmahon.com.au" class="about-link">Email ↗</a>
-          <a href="https://linkedin.com/in/alexmcmahon" target="_blank" rel="noopener" class="about-link">LinkedIn ↗</a>
-          <a href="https://himynameisalexm.substack.com/" target="_blank" rel="noopener" class="about-link">Substack ↗</a>
-        </div>
-      </div>
-      <div class="about-stats reveal d2">
-        <div><div class="about-stat-num">17+</div><div class="about-stat-label">Years leading design</div></div>
-        <div><div class="about-stat-num">6</div><div class="about-stat-label">Industries shipped in</div></div>
-        <div><div class="about-stat-num">M+</div><div class="about-stat-label">Users reached</div></div>
-        <div><div class="about-stat-num">20+</div><div class="about-stat-label">Designers hired</div></div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===================== AI WORK ===================== -->
   <div class="ai-section" id="ai">
