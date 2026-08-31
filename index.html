@@ -46,7 +46,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 clamp(32px, 8vw, 140px);
+      padding: 60px clamp(32px, 8vw, 140px) 0;
       position: relative;
       z-index: 1;
     }
@@ -243,11 +243,11 @@
     /* ===================== SECTIONS ===================== */
     .section {
       padding: 140px clamp(32px, 8vw, 140px);
-      max-width: 1300px;
-      margin: 0 auto;
       position: relative;
       z-index: 1;
     }
+
+    .section-inner { max-width: 1300px; margin: 0 auto; }
 
     .section-eyebrow {
       font-size: 11px;
@@ -424,81 +424,59 @@
     }
 
     /* ===================== SPEAKING ===================== */
-    .speaking-intro {
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--gray-700);
-      max-width: 560px;
-      margin-bottom: 64px;
-    }
-
-    .speaking-cols {
+    .speak-cards {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
-    .col-title {
-      font-family: var(--serif);
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .speak-col-card {
+    .speak-card {
       border: 1px solid var(--gray-100);
       border-radius: 20px;
-      padding: 36px 32px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       opacity: 0;
       transform: translateY(24px);
       transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .speak-col-card.visible { opacity: 1; transform: none; }
-    .speak-col-card:nth-child(2) { transition-delay: 0.1s; }
+    .speak-card.visible { opacity: 1; transform: none; }
+    .speak-card:nth-child(2) { transition-delay: 0.08s; }
+    .speak-card:nth-child(3) { transition-delay: 0.16s; }
+    .speak-card:nth-child(4) { transition-delay: 0.24s; }
 
-    .speak-list { list-style: none; }
-
-    .speak-list li {
-      font-size: 15px;
-      padding: 14px 0;
-      color: var(--gray-700);
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .speak-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+      border-color: var(--gray-200);
     }
 
-    .speak-list li + li { border-top: 1px solid var(--gray-100); }
-
-    .speak-list li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gray-300);
-      flex-shrink: 0;
+    .speak-card-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.3;
     }
 
-    .speak-list li a {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex: 1;
+    .speak-card-title a { transition: color 0.3s; }
+    .speak-card-title a:hover { color: var(--gray-500); }
+
+    .speak-card-venue {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-400);
+      letter-spacing: 0.04em;
+    }
+
+    .speak-card-arrow {
+      margin-top: auto;
+      color: var(--gray-300);
+      font-size: 16px;
       transition: color 0.3s;
     }
 
-    .speak-list li a:hover { color: var(--black); }
-
-    .speak-list li a::after {
-      content: '↗';
-      opacity: 0.4;
-      font-size: 13px;
-      transition: opacity 0.3s;
-      margin-left: 8px;
-      flex-shrink: 0;
-    }
-
-    .speak-list li a:hover::after { opacity: 1; }
+    .speak-card:hover .speak-card-arrow { color: var(--black); }
 
     /* ===================== BUILDING ===================== */
     .building-section {
@@ -598,7 +576,7 @@
       .stat { flex: 1 1 50%; }
       .stat:nth-child(2) { border-right: none; }
       .ai-cards { grid-template-columns: 1fr; }
-      .speaking-cols { grid-template-columns: 1fr; gap: 48px; }
+      .speak-cards { grid-template-columns: 1fr 1fr; }
       .build-cards { grid-template-columns: 1fr; }
       .footer { flex-direction: column; gap: 8px; }
     }
@@ -727,8 +705,8 @@
         <span class="logo-chip"><svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M8.5 2a3.5 3.5 0 000 7h3V5.5v-2A3.5 3.5 0 008.5 2zm0 7a3.5 3.5 0 100 7h.5v-3.5A3.5 3.5 0 008.5 9zm7-7H12v7h3.5a3.5 3.5 0 100-7zm-3.5 7a3.5 3.5 0 103.5 3.5A3.5 3.5 0 0012 9zm-3.5 7A3.5 3.5 0 1012 19.5V16z"/></svg>Figma AI</span>
         <!-- n8n -->
         <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="12" r="3" stroke="#0a0a0a" stroke-width="1.5"/><circle cx="18" cy="7" r="3" stroke="#0a0a0a" stroke-width="1.5"/><circle cx="18" cy="17" r="3" stroke="#0a0a0a" stroke-width="1.5"/><path d="M9 12h3m0 0l3-4m-3 4l3 4" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/></svg>n8n</span>
-        <!-- Lovable -->
-        <span class="logo-chip"><svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Lovable</span>
+        <!-- Visual Studio Code -->
+        <span class="logo-chip"><svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M17 2.8L10.3 9 5.7 5.3 4 6.3v11.4l1.7 1L10.3 15 17 21.2l3-1.4V4.2L17 2.8zM5.5 14.7V9.3l2.9 2.7-2.9 2.7zm7.8-2.7L17 8.5v7L13.3 12z"/></svg>VS Code</span>
         <!-- Perplexity -->
         <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0a0a0a" stroke-width="1.5"/><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke="#0a0a0a" stroke-width="1" opacity="0.5"/></svg>Perplexity</span>
         <!-- Zapier -->
@@ -739,15 +717,30 @@
 
   <!-- ===================== SPEAKING ===================== -->
   <section class="section" id="speaking">
-    <h2 class="section-title shimmer reveal d1">I speak and teach on AI.</h2>
+    <div class="section-inner">
+      <h2 class="section-title shimmer reveal d1">I speak and teach on AI.</h2>
 
-    <ul class="speak-list" id="speakList1">
-      <li><a href="https://webdirections.org/aixdesign/speakers/alex-mcmahon.php" target="_blank" rel="noopener">Designing AI for High-Stakes Industries</a> — AI X Design, Web Directions</li>
-      <li><a href="https://ixdf.org/master-classes/user-research-for-everyone-practical-strategies-for-every-team" target="_blank" rel="noopener">User Research for Everyone</a> — IxDF Masterclass</li>
-      <li>Beyond Games — Virtual World UX</li>
-      <li>Australia Digital Conference</li>
-    </ul>
-
+      <div class="speak-cards" id="speakCards">
+        <div class="speak-card">
+          <div class="speak-card-title"><a href="https://webdirections.org/aixdesign/speakers/alex-mcmahon.php" target="_blank" rel="noopener">Designing AI for High-Stakes Industries</a></div>
+          <div class="speak-card-venue">AI X Design · Web Directions</div>
+          <div class="speak-card-arrow">↗</div>
+        </div>
+        <div class="speak-card">
+          <div class="speak-card-title"><a href="https://ixdf.org/master-classes/user-research-for-everyone-practical-strategies-for-every-team" target="_blank" rel="noopener">User Research for Everyone</a></div>
+          <div class="speak-card-venue">IxDF Masterclass</div>
+          <div class="speak-card-arrow">↗</div>
+        </div>
+        <div class="speak-card">
+          <div class="speak-card-title">Beyond Games — Virtual World UX</div>
+          <div class="speak-card-venue">Conference Talk</div>
+        </div>
+        <div class="speak-card">
+          <div class="speak-card-title">Australia Digital Conference</div>
+          <div class="speak-card-venue">Conference Talk</div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ===================== BUILDING ===================== -->
@@ -787,7 +780,7 @@
       (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
-    document.querySelectorAll('.reveal, .ai-card, .build-card, .stat, .speak-col-card').forEach(el => revealObs.observe(el));
+    document.querySelectorAll('.reveal, .ai-card, .build-card, .stat, .speak-card').forEach(el => revealObs.observe(el));
 
     // Shimmer — slow sweep on scroll
     const shimmerObs = new IntersectionObserver(
@@ -816,19 +809,20 @@
       setTimeout(() => el.classList.add('active'), 2400 + i * 500);
     });
 
-    // Speaking list stagger
-    const listObs = new IntersectionObserver(
+    // Speaking cards stagger
+    const speakObs = new IntersectionObserver(
       (entries) => entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.querySelectorAll('li').forEach((li, i) => {
-            setTimeout(() => li.classList.add('visible'), i * 100);
+          e.target.querySelectorAll('.speak-card').forEach((c, i) => {
+            setTimeout(() => c.classList.add('visible'), i * 80);
           });
-          listObs.unobserve(e.target);
+          speakObs.unobserve(e.target);
         }
       }),
       { threshold: 0.2 }
     );
-    document.querySelectorAll('.speak-list').forEach(el => listObs.observe(el));
+    const speakEl = document.getElementById('speakCards');
+    if (speakEl) speakObs.observe(speakEl);
 
     // Chip stagger
     const chipObs = new IntersectionObserver(
