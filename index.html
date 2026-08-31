@@ -62,8 +62,8 @@
       transform: translateY(16px);
       animation: fadeUp 0.8s 0.3s forwards;
     }
-    .hero-label a { color: var(--gray-400); border-bottom: 1px solid var(--gray-300); transition: border-color 0.3s, color 0.3s; }
-    .hero-label a:hover { color: var(--black); border-color: var(--black); }
+    .hero-label a { color: var(--gray-400); transition: color 0.3s; }
+    .hero-label a:hover { color: var(--black); }
 
     .hero-title {
       font-family: var(--serif);
@@ -279,11 +279,10 @@
     .hero-bio a {
       color: var(--gray-700);
       font-weight: 400;
-      border-bottom: 1px solid var(--gray-300);
-      transition: border-color 0.3s;
+      transition: color 0.3s;
     }
 
-    .hero-bio a:hover { border-color: var(--black); color: var(--black); }
+    .hero-bio a:hover { color: var(--black); }
 
     .hero-links {
       display: flex;
@@ -294,12 +293,11 @@
     .about-link {
       font-size: 14px;
       font-weight: 500;
-      padding-bottom: 3px;
-      border-bottom: 1.5px solid var(--gray-200);
-      transition: border-color 0.3s;
+      color: var(--gray-400);
+      transition: color 0.3s;
     }
 
-    .about-link:hover { border-color: var(--black); }
+    .about-link:hover { color: var(--black); }
 
     /* ===================== AI WORK ===================== */
     .ai-section {
