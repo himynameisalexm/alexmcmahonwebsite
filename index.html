@@ -371,6 +371,8 @@
       line-height: 1.7;
       color: var(--gray-500);
     }
+    .ai-card a { color: var(--gray-700); font-weight: 400; transition: color 0.3s; }
+    .ai-card a:hover { color: var(--black); }
 
     /* Stack */
     .stack-title {
@@ -657,7 +659,7 @@
 
     <div class="hero-bottom">
       <p class="hero-sub">18 years making complex problems feel more human — across design leadership, AI product design, and 0→1 launches.</p>
-      <p class="hero-bio">I've led design organisations at <a href="https://www.newscorpaustralia.com/" target="_blank" rel="noopener">News Corp</a>, <a href="https://www.expediagroup.com/" target="_blank" rel="noopener">Expedia</a>, <a href="https://www.marketingdive.com/news/budweiser-zed-run-sponsorship-clydesdales-nft-metaverse/625192/" target="_blank" rel="noopener">Virtually Human Studio</a>, <a href="https://www.pv-magazine-australia.com/2024/10/16/redback-reveals-next-gen-home-battery-and-inverter-range/" target="_blank" rel="noopener">Redback Technologies</a>, <a href="https://fortune.com/2026/01/14/alpaca-fundraise-series-d-brokerage-infrastructure/" target="_blank" rel="noopener">Alpaca Markets</a> and <a href="https://www.mpamag.com/au/mortgage-industry/technology/lmg-launches-embedded-ai-tools-in-mycrm/558390" target="_blank" rel="noopener">Loan Market Group</a> — managing designers, design managers, 3D artists and front-end engineers across three continents.</p>
+      <p class="hero-bio">Previously at <a href="https://www.newscorpaustralia.com/" target="_blank" rel="noopener">News Corp</a>, <a href="https://www.expediagroup.com/" target="_blank" rel="noopener">Expedia</a>, <a href="https://www.marketingdive.com/news/budweiser-zed-run-sponsorship-clydesdales-nft-metaverse/625192/" target="_blank" rel="noopener">Virtually Human Studio</a>, <a href="https://www.pv-magazine-australia.com/2024/10/16/redback-reveals-next-gen-home-battery-and-inverter-range/" target="_blank" rel="noopener">Redback Technologies</a>, <a href="https://fortune.com/2026/01/14/alpaca-fundraise-series-d-brokerage-infrastructure/" target="_blank" rel="noopener">Alpaca Markets</a> and <a href="https://www.mpamag.com/au/mortgage-industry/technology/lmg-launches-embedded-ai-tools-in-mycrm/558390" target="_blank" rel="noopener">Loan Market Group</a>.</p>
       <div class="hero-links">
         <a href="mailto:hello@alexmcmahon.com.au" class="about-link">Email ↗</a>
         <a href="https://linkedin.com/in/alexmcmahon" target="_blank" rel="noopener" class="about-link">LinkedIn ↗</a>
@@ -684,7 +686,6 @@
   <!-- ===================== AI WORK ===================== -->
   <div class="ai-section" id="ai">
     <div class="ai-inner">
-      <div class="section-eyebrow reveal">AI Work</div>
       <h2 class="section-title shimmer reveal d1" style="max-width:700px;margin-bottom:64px;">Designing AI that people actually use.</h2>
 
       <div class="ai-cards">
@@ -692,22 +693,22 @@
           <div class="ai-card-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h3>LLM Interface Design</h3>
-          <p>Patterns for chat, completion and agentic AI — confidence signalling, human override, contestability.</p>
+          <h3>AI Agents</h3>
+          <p>Shipped <a href="https://lmg.broker/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener">My Note Writer, My QA</a>, <a href="https://www.linkedin.com/posts/lmg-au_mydataanalyst-activity-7495635723715395585-705t" target="_blank" rel="noopener">My Data Analyst</a> and My Documents at LMG — AI agents used daily by thousands of brokers.</p>
         </div>
         <div class="ai-card">
           <div class="ai-card-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#0a0a0a" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="#0a0a0a" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="#0a0a0a" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="#0a0a0a" stroke-width="1.5"/></svg>
           </div>
-          <h3>AI Design Systems</h3>
-          <p>Component libraries built for probabilistic, dynamic content — error recovery, graceful failure, prompt-to-code ops.</p>
+          <h3>AI Behaviour & Pattern Libraries</h3>
+          <p>13-category agentic AI pattern library and hands-on work with data teams to define, measure and improve model accuracy and output quality.</p>
         </div>
         <div class="ai-card">
           <div class="ai-card-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <h3>Responsible AI UX</h3>
-          <p>Explainability, contextual disclosure and compliance-led design embedded from day one.</p>
+          <h3>AI Design Builders</h3>
+          <p>Upskilling designers to ship code — from prompt-driven design to pushing PRs in GitHub. Turning a design team into a build team.</p>
         </div>
       </div>
 
@@ -737,39 +738,21 @@
 
   <!-- ===================== SPEAKING ===================== -->
   <section class="section" id="speaking">
-    <div class="section-eyebrow reveal">Speaking & Teaching</div>
-    <h2 class="section-title shimmer reveal d1">Helping teams get good at AI.</h2>
-    <p class="speaking-intro reveal d2">I speak at conferences and run workshops inside organisations — helping design teams, product managers and executives build genuine fluency with AI tools.</p>
+    <h2 class="section-title shimmer reveal d1">I speak and teach on AI.</h2>
 
-    <div class="speaking-cols">
-      <div class="speak-col-card">
-        <div class="col-title">What I speak on</div>
-        <ul class="speak-list" id="speakList1">
-          <li><a href="https://webdirections.org/aixdesign/speakers/alex-mcmahon.php" target="_blank" rel="noopener">Designing AI for High-Stakes Industries</a></li>
-          <li><a href="https://ixdf.org/master-classes/user-research-for-everyone-practical-strategies-for-every-team" target="_blank" rel="noopener">User Research for Everyone</a></li>
-          <li>Leading design teams in the age of AI</li>
-          <li>Teaching non-technical teams to work with AI</li>
-        </ul>
-      </div>
-      <div class="speak-col-card">
-        <div class="col-title">Past engagements</div>
-        <ul class="speak-list" id="speakList2">
-          <li><a href="https://webdirections.org/aixdesign/" target="_blank" rel="noopener">AI X Design — Web Directions</a></li>
-          <li>IxDF Masterclass</li>
-          <li>Beyond Games — Virtual World UX</li>
-          <li>Australia Digital Conference</li>
-          <li>UX Meetups (multiple)</li>
-        </ul>
-      </div>
-    </div>
+    <ul class="speak-list" id="speakList1">
+      <li><a href="https://webdirections.org/aixdesign/speakers/alex-mcmahon.php" target="_blank" rel="noopener">Designing AI for High-Stakes Industries</a> — AI X Design, Web Directions</li>
+      <li><a href="https://ixdf.org/master-classes/user-research-for-everyone-practical-strategies-for-every-team" target="_blank" rel="noopener">User Research for Everyone</a> — IxDF Masterclass</li>
+      <li>Beyond Games — Virtual World UX</li>
+      <li>Australia Digital Conference</li>
+    </ul>
 
   </section>
 
   <!-- ===================== BUILDING ===================== -->
   <div class="building-section" id="building">
     <div class="building-inner">
-      <div class="section-eyebrow reveal">Building</div>
-      <h2 class="section-title shimmer reveal d1">Personal builds.</h2>
+      <h2 class="section-title shimmer reveal d1">Things I've built.</h2>
       <p class="building-sub reveal d2">I build full apps for my own life when what exists isn't good enough.</p>
 
       <div class="build-cards">
@@ -792,7 +775,7 @@
 
   <footer class="footer">
     <span>© 2026 Alex McMahon · Sunshine Coast, Australia</span>
-    <span>Designed & built with AI — Claude Code</span>
+    <span>Built with Claude Code</span>
   </footer>
 
   <script>
