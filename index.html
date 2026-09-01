@@ -172,31 +172,6 @@
     }
     .persistent-cta:hover { color: var(--black); }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 40px;
-      left: clamp(32px, 8vw, 140px);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      opacity: 0;
-      animation: fadeIn 1s 2s forwards;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 48px;
-      background: linear-gradient(to bottom, var(--gray-300), transparent);
-      animation: scrollPulse 2.5s infinite;
-    }
-
-    .scroll-text {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      writing-mode: vertical-rl;
-    }
 
     /* ===================== STATS ===================== */
     .stats {
@@ -247,7 +222,7 @@
       z-index: 1;
     }
 
-    .section-inner { max-width: 1300px; margin: 0 auto; }
+    .section-inner { }
 
     .section-eyebrow {
       font-size: 11px;
@@ -307,7 +282,7 @@
       z-index: 1;
     }
 
-    .ai-inner { max-width: 1300px; margin: 0 auto; }
+    .ai-inner { }
 
     .ai-cards {
       display: grid;
@@ -347,17 +322,28 @@
       margin-bottom: 24px;
     }
 
-    /* Subtle icon animations */
-    .ai-card-icon svg {
-      animation: iconPulse 4s ease-in-out infinite;
+    /* Icon animations — each card gets a unique motion */
+    .ai-card:nth-child(1) .ai-card-icon svg {
+      animation: iconBounce 3s ease-in-out infinite;
+    }
+    .ai-card:nth-child(2) .ai-card-icon svg {
+      animation: iconSpin 8s linear infinite;
+    }
+    .ai-card:nth-child(3) .ai-card-icon svg {
+      animation: iconPulse 3s ease-in-out infinite;
     }
 
-    .ai-card:nth-child(2) .ai-card-icon svg { animation-delay: 1.3s; }
-    .ai-card:nth-child(3) .ai-card-icon svg { animation-delay: 2.6s; }
-
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
     @keyframes iconPulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.08); opacity: 1; }
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.15); opacity: 1; }
     }
 
     .ai-card h3 {
@@ -486,7 +472,7 @@
       z-index: 1;
     }
 
-    .building-inner { max-width: 1300px; margin: 0 auto; }
+    .building-inner { }
 
     .building-sub {
       font-size: 16px;
@@ -565,10 +551,6 @@
     /* ===================== KEYFRAMES ===================== */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
 
     /* ===================== RESPONSIVE ===================== */
     @media (max-width: 768px) {
@@ -580,26 +562,66 @@
       .build-cards { grid-template-columns: 1fr; }
       .footer { flex-direction: column; gap: 8px; }
     }
-    /* ===================== DRAW HINT ===================== */
-    .draw-hint {
+    /* ===================== DRAW PROMPT ===================== */
+    .draw-prompt {
+      position: absolute;
+      top: 50%;
+      right: clamp(32px, 8vw, 140px);
+      transform: translateY(-50%);
+      font-family: var(--serif);
+      font-size: clamp(64px, 8vw, 120px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--gray-100);
+      pointer-events: none;
+      text-align: right;
+      opacity: 0;
+      animation: fadeIn 1.5s 2.5s forwards;
+      z-index: 0;
+    }
+
+    .draw-prompt .hint-mobile { display: none; }
+    @media (pointer: coarse) { .draw-prompt .hint-desktop { display: none; } .draw-prompt .hint-mobile { display: block; } }
+
+    /* ===================== DRAW CONTROLS ===================== */
+    .draw-controls {
       position: fixed;
       bottom: 28px;
       right: 32px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gray-300);
+      gap: 12px;
       z-index: 10;
       opacity: 0;
+      transition: opacity 0.5s;
     }
 
-    .draw-hint.show { animation: fadeIn 1.5s forwards; }
+    .draw-controls.show { opacity: 1; }
 
-    .draw-hint .hint-mobile { display: none; }
-    @media (pointer: coarse) { .draw-hint .hint-desktop { display: none; } .draw-hint .hint-mobile { display: inline; } }
+    .draw-btn {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 100px;
+      padding: 8px 18px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .draw-btn:hover { color: var(--black); border-color: var(--gray-400); }
+
+    .draw-btn-send {
+      color: var(--white);
+      background: var(--black);
+      border-color: var(--black);
+    }
+
+    .draw-btn-send:hover { background: var(--gray-700); border-color: var(--gray-700); }
 
     /* ===================== DRAW CANVAS ===================== */
     .draw-canvas {
@@ -619,14 +641,17 @@
 
   <canvas class="draw-canvas" id="drawCanvas"></canvas>
 
-  <div class="draw-hint" aria-hidden="true">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-    <span class="hint-desktop">click + drag to draw</span>
-    <span class="hint-mobile">hold + drag to draw</span>
+  <div class="draw-controls" id="drawControls">
+    <button class="draw-btn" id="eraseBtn" style="display:none">Erase</button>
+    <button class="draw-btn draw-btn-send" id="sendDrawingBtn" style="display:none">Send Drawing</button>
   </div>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="hero">
+    <div class="draw-prompt" aria-hidden="true">
+      <span class="hint-desktop">Click +<br>draw</span>
+      <span class="hint-mobile">Hold +<br>draw</span>
+    </div>
     <div class="hero-label">Head of Design at <a href="https://www.loanmarketgroup.com/" target="_blank" rel="noopener">LMG</a> · Sunshine Coast, Australia</div>
 
     <h1 class="hero-title">
@@ -646,11 +671,6 @@
       </div>
     </div>
 
-    <div class="hero-scroll" aria-hidden="true">
-      <div class="scroll-line"></div>
-      <span class="scroll-text">Scroll</span>
-    </div>
-
   </section>
 
   <!-- ===================== STATS ===================== -->
@@ -665,7 +685,7 @@
   <!-- ===================== AI WORK ===================== -->
   <div class="ai-section" id="ai">
     <div class="ai-inner">
-      <h2 class="section-title shimmer reveal d1" style="max-width:700px;margin-bottom:64px;">Designing AI that people actually use.</h2>
+      <h2 class="section-title shimmer reveal d1" style="margin-bottom:64px;">Designing AI that people actually use.</h2>
 
       <div class="ai-cards">
         <div class="ai-card">
@@ -867,33 +887,88 @@
       });
     });
 
-    // Background drawing easter egg
+    // Background drawing easter egg — permanent strokes
     (function initDrawCanvas() {
       const canvas = document.getElementById('drawCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let dpr = window.devicePixelRatio || 1;
-      const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
       const segments = [];
       let drawing = false;
       let lastX, lastY, hue = 0, totalDist = 0;
-      const drawHint = document.querySelector('.draw-hint');
-      const FADE_MS = 4000;
       const STROKE_W = 4;
       const HOLD_MS = 400;
       const HOLD_MOVE_THRESH = 10;
+
+      const controls = document.getElementById('drawControls');
+      const eraseBtn = document.getElementById('eraseBtn');
+      const sendBtn = document.getElementById('sendDrawingBtn');
+      let drawSessions = 0;
+      let drawStartTime = 0;
+      let controlsShown = false;
+
+      function showControls() {
+        if (controlsShown) return;
+        controlsShown = true;
+        eraseBtn.style.display = '';
+        sendBtn.style.display = '';
+        controls.classList.add('show');
+      }
+
+      function checkShowControls() {
+        if (controlsShown) return;
+        if (drawSessions >= 2) { showControls(); return; }
+        if (drawStartTime && performance.now() - drawStartTime > 5000) showControls();
+      }
+
+      eraseBtn.addEventListener('click', () => {
+        segments.length = 0;
+        const vw = window.innerWidth, vh = window.innerHeight;
+        ctx.clearRect(0, 0, vw, vh);
+        totalDist = 0;
+        hue = 0;
+      });
+
+      sendBtn.addEventListener('click', () => {
+        const tempCanvas = document.createElement('canvas');
+        const vw = window.innerWidth, vh = window.innerHeight;
+        const sy = window.scrollY, sx = window.scrollX;
+        tempCanvas.width = vw * 2;
+        tempCanvas.height = vh * 2;
+        const tCtx = tempCanvas.getContext('2d');
+        tCtx.scale(2, 2);
+        tCtx.fillStyle = '#ffffff';
+        tCtx.fillRect(0, 0, vw, vh);
+        for (const s of segments) {
+          const x1 = s.x1 - sx, y1 = s.y1 - sy;
+          const x2 = s.x2 - sx, y2 = s.y2 - sy;
+          tCtx.beginPath();
+          tCtx.moveTo(x1, y1);
+          tCtx.lineTo(x2, y2);
+          tCtx.strokeStyle = `hsl(${s.hue}, 80%, 60%)`;
+          tCtx.lineWidth = STROKE_W;
+          tCtx.lineCap = 'round';
+          tCtx.stroke();
+        }
+        tempCanvas.toBlob((blob) => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = 'mailto:hello@alexmcmahon.com.au?subject=A drawing for you&body=I drew something on your website!';
+          window.location.href = a.href;
+          URL.revokeObjectURL(url);
+        });
+      });
 
       function resize() {
         dpr = window.devicePixelRatio || 1;
         canvas.width = window.innerWidth * dpr;
         canvas.height = window.innerHeight * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        redraw();
       }
       resize();
       window.addEventListener('resize', resize);
-
-      if (drawHint) setTimeout(() => drawHint.classList.add('show'), 4000);
 
       function addSegment(x, y) {
         const dx = x - lastX, dy = y - lastY;
@@ -901,10 +976,11 @@
         if (dist < 2) return;
         totalDist += dist;
         hue = (totalDist * 0.8) % 360;
-        segments.push({ x1: lastX, y1: lastY, x2: x, y2: y, hue, born: performance.now() });
+        segments.push({ x1: lastX, y1: lastY, x2: x, y2: y, hue });
         lastX = x;
         lastY = y;
-        if (!animating) startLoop();
+        checkShowControls();
+        redraw();
       }
 
       // Desktop: click + drag
@@ -912,8 +988,11 @@
         if (e.target.closest('a, button, input, textarea, select')) return;
         e.preventDefault();
         drawing = true;
+        drawSessions++;
+        if (!drawStartTime) drawStartTime = performance.now();
         lastX = e.pageX;
         lastY = e.pageY;
+        checkShowControls();
       });
       document.addEventListener('mousemove', (e) => { if (drawing) addSegment(e.pageX, e.pageY); });
       document.addEventListener('mouseup', () => { drawing = false; });
@@ -932,13 +1011,11 @@
         holdTimer = setTimeout(() => {
           holdTimer = null;
           drawing = true;
+          drawSessions++;
+          if (!drawStartTime) drawStartTime = performance.now();
           lastX = touchStartX;
           lastY = touchStartY;
-          // Pulse hint to signal draw mode activated
-          if (drawHint) {
-            drawHint.style.color = 'var(--gray-500)';
-            setTimeout(() => drawHint.style.color = '', 600);
-          }
+          checkShowControls();
         }, HOLD_MS);
       }, { passive: true });
 
@@ -967,43 +1044,27 @@
       });
 
       window.addEventListener('scroll', () => {
-        if (segments.length && !animating) startLoop();
+        if (segments.length) redraw();
       }, { passive: true });
 
-      let animating = false;
-      function startLoop() {
-        animating = true;
-        requestAnimationFrame(redraw);
-      }
-
-      function redraw(now) {
+      function redraw() {
         const vw = window.innerWidth;
         const vh = window.innerHeight;
         const sy = window.scrollY;
         const sx = window.scrollX;
         ctx.clearRect(0, 0, vw, vh);
-        let i = segments.length;
-        while (i--) {
-          const s = segments[i];
-          const age = now - s.born;
-          if (age > FADE_MS) { segments.splice(i, 1); continue; }
+        for (const s of segments) {
           const x1 = s.x1 - sx, y1 = s.y1 - sy;
           const x2 = s.x2 - sx, y2 = s.y2 - sy;
           if (Math.max(x1,x2) < -10 || Math.min(x1,x2) > vw+10 ||
               Math.max(y1,y2) < -10 || Math.min(y1,y2) > vh+10) continue;
-          const alpha = 1 - age / FADE_MS;
           ctx.beginPath();
           ctx.moveTo(x1, y1);
           ctx.lineTo(x2, y2);
-          ctx.strokeStyle = `hsla(${s.hue}, 80%, 60%, ${alpha})`;
+          ctx.strokeStyle = `hsl(${s.hue}, 80%, 60%)`;
           ctx.lineWidth = STROKE_W;
           ctx.lineCap = 'round';
           ctx.stroke();
-        }
-        if (segments.length > 0) {
-          requestAnimationFrame(redraw);
-        } else {
-          animating = false;
         }
       }
     })();
