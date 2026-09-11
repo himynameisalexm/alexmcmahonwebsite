@@ -256,6 +256,15 @@ style.css  script.js       OLD terminal design — only v1-terminal.html and
 v1-terminal.html           archived previous design
 ```
 
+> ⚠️ **The case studies have no link anywhere on the homepage, by deliberate choice.**
+> They're a private-by-obscurity share: reachable only if Alex sends someone the direct URL
+> (`/casestudies/` or a specific study). This has been added and removed from the homepage
+> hero links twice now — once removed in commit `ad1fd4e` ("Remove case studies link"), then
+> re-added and immediately reverted again in the same session. **Don't add a homepage nav
+> link to `/casestudies/` unless he explicitly asks for it in that conversation** — a past
+> instruction to build out the case studies is not standing permission to make them
+> discoverable from the homepage; those are separate decisions.
+
 ## Design system
 
 Every page carries its own inline CSS. The case studies were migrated off `style.css`
