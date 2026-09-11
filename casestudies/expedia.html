@@ -3,163 +3,493 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Expedia Case Study — Alex McMahon</title>
+  <title>Expedia Group — Alex McMahon</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #fafaf8;
+      --black: #0a0a0a;
+      --gray-700: #3d3d3d;
+      --gray-500: #6b6b6b;
+      --gray-400: #8a8a8a;
+      --gray-300: #b0b0b0;
+      --gray-200: #d4d4d4;
+      --gray-100: #ebebeb;
+      --gold: #b8965a;
+      --gold-light: #d4b87a;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--black); color: var(--white); }
+    a { color: inherit; text-decoration: none; }
+
+    .persistent-cta {
+      position: fixed;
+      top: 36px;
+      right: clamp(32px, 8vw, 140px);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      z-index: 10;
+      transition: color 0.3s;
+    }
+    .persistent-cta:hover { color: var(--black); }
+
+    .back-link {
+      position: fixed;
+      top: 36px;
+      left: clamp(32px, 8vw, 140px);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      z-index: 10;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--black); }
+
+    .cs-hero {
+      padding: 180px clamp(32px, 8vw, 140px) 100px;
+    }
+
+    .cs-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .cs-title {
+      font-family: var(--serif);
+      font-size: clamp(44px, 7vw, 92px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -2px;
+      max-width: 1000px;
+      padding-bottom: 0.05em;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 1s 0.4s forwards;
+    }
+
+    /* Shimmer lives on an inner span so its animation can't clobber the fade-in */
+    .cs-title .shimmer { display: block; }
+
+    .shimmer {
+      background: linear-gradient(
+        90deg,
+        var(--black) 0%, var(--black) 44%,
+        var(--gold) 48%, var(--gold-light) 50%, var(--gold) 52%,
+        var(--black) 56%, var(--black) 100%
+      );
+      background-size: 400% 100%;
+      background-position: 0% center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .shimmer.active { animation: shimmerSweep 6s ease forwards; }
+
+    @keyframes shimmerSweep {
+      0% { background-position: 100% center; }
+      70% { background-position: 0% center; }
+      100% { background-position: 0% center; }
+    }
+
+    .cs-meta {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--gray-500);
+      max-width: 560px;
+      margin-top: 32px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 1s 0.7s forwards;
+    }
+
+    .facts {
+      display: flex;
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .fact {
+      flex: 1;
+      padding: 44px clamp(24px, 4vw, 48px);
+      border-right: 1px solid var(--gray-100);
+    }
+    .fact:last-child { border-right: none; }
+
+    .fact-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+
+    .fact-value {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    .cs-content {
+      padding: 120px clamp(32px, 6vw, 110px);
+    }
+
+    .cs-section { margin-bottom: 120px; }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+      padding-bottom: 0.05em;
+      max-width: 680px;
+    }
+
+    .cs-section h3 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 2.6vw, 32px);
+      font-weight: 400;
+      line-height: 1.3;
+      margin: 72px 0 24px;
+      max-width: 680px;
+    }
+
+    .cs-section p {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--gray-700);
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+
+    .cs-section p strong { font-weight: 500; color: var(--black); }
+    .cs-section p em { font-style: italic; color: var(--gray-500); }
+
+    .cs-link {
+      color: var(--black);
+      font-weight: 400;
+      border-bottom: 1px solid var(--gray-200);
+      transition: border-color 0.3s;
+    }
+    .cs-link:hover { border-color: var(--black); }
+
+    /* ===== EDITORIAL GRID =====
+       Wide screens get a sticky rail carrying the section title, so the page
+       always has a left column doing work instead of sitting empty. Collapses
+       to a single column below 1180px. */
+    @media (min-width: 1180px) {
+      .cs-section {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        column-gap: clamp(40px, 4vw, 80px);
+        align-items: start;
+      }
+
+      .cs-section-rail {
+        position: sticky;
+        top: 100px;
+      }
+
+      .cs-section-rail h2 {
+        font-size: clamp(26px, 2.2vw, 34px);
+        letter-spacing: -0.5px;
+        margin-bottom: 0;
+        color: var(--gray-700);
+      }
+    }
+
+    .cs-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 64px;
+    }
+
+    .metric-card {
+      border: 1px solid var(--gray-100);
+      border-radius: 20px;
+      padding: 40px 28px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .metric-card.visible { opacity: 1; transform: none; }
+    .metric-card:nth-child(2) { transition-delay: 0.08s; }
+    .metric-card:nth-child(3) { transition-delay: 0.16s; }
+    .metric-card:nth-child(4) { transition-delay: 0.24s; }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+      border-color: var(--gray-200);
+    }
+
+    .metric-value {
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.6vw, 48px);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--gray-500);
+    }
+
+    .cs-next {
+      padding: 100px clamp(32px, 8vw, 140px);
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .cs-next-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 20px;
+    }
+
+    .cs-next-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.2;
+      transition: color 0.3s;
+    }
+    .cs-next-title:hover { color: var(--gray-500); }
+
+    .footer {
+      padding: 40px clamp(32px, 8vw, 140px);
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .facts { flex-wrap: wrap; }
+      .fact { flex: 1 1 100%; border-right: none; border-bottom: 1px solid var(--gray-100); }
+      .fact:last-child { border-bottom: none; }
+      .cs-metrics { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .cs-hero { padding-top: 140px; }
+      .back-link, .persistent-cta { font-size: 10px; }
+      .footer { flex-direction: column; gap: 8px; }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-follower" aria-hidden="true"></div>
+  <a href="index.html" class="back-link">← Case Studies</a>
+  <a href="mailto:hello@alexmcmahon.com.au" class="persistent-cta">Get in Touch ↗</a>
 
-  <nav class="nav">
-    <a href="/" class="nav-logo">AM</a>
-    <div class="nav-links">
-      <a href="index.html" class="nav-link">← Back to Case Studies</a>
-    </div>
-    <a href="mailto:hello@alexmcmahon.com.au" class="nav-cta">Get in Touch</a>
-  </nav>
-
-  <!-- HERO -->
-  <section class="case-study-hero">
-    <div class="case-study-hero-content">
-      <div class="case-study-label reveal-item">Case Study · Expedia Group</div>
-      <h1 class="case-study-title reveal-item">Partner Central — From 3.5 to 4.5 Stars</h1>
-      <p class="case-study-meta reveal-item delay-1">
-        Senior UX Manager · Native iOS & Android · ML-Powered Partner Intelligence
-      </p>
-    </div>
+  <section class="cs-hero">
+    <div class="cs-eyebrow">Case Study · Expedia Group</div>
+    <h1 class="cs-title"><span class="shimmer">Partner Central, from 3.5 to 4.5 stars.</span></h1>
+    <p class="cs-meta">Senior UX Manager · Native iOS &amp; Android · ML-powered partner intelligence for hotels worldwide.</p>
   </section>
 
-  <article class="case-study-content">
+  <div class="facts">
+    <div class="fact">
+      <div class="fact-label">Audience</div>
+      <div class="fact-value">Hotel &amp; holiday home partners globally</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">Reach</div>
+      <div class="fact-value">112M monthly visitors · 380M room nights</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">Role</div>
+      <div class="fact-value">Senior UX Manager</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">Outcome</div>
+      <div class="fact-value">3.5 → 4.5 star rating in 12 months</div>
+    </div>
+  </div>
 
-    <!-- OVERVIEW -->
-    <section class="case-study-section">
-      <h2>Overview</h2>
-      <p>
-        Expedia Partner Central is the native iOS and Android platform that connects hoteliers and holiday home owners to 200+ booking sites — including Expedia, Hotels.com, Vrbo, Travelocity and Orbitz — reaching <strong>112 million monthly visitors</strong> and <strong>380 million room night bookings annually.</strong>
-      </p>
-      <p>
-        As Senior UX Manager, I led the multi-disciplinary design team responsible for the entire partner-facing mobile experience: listing management, booking flows, performance analytics, guest communications, and the platform's first machine learning feature. In 12 months, we moved the app store rating from <strong>3.5 to 4.5 stars.</strong>
-      </p>
-      <div class="case-study-meta-grid">
-        <div class="meta-item">
-          <span class="meta-label">Audience</span>
-          <span class="meta-value">Hotel & holiday home partners globally</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Reach</span>
-          <span class="meta-value">112M monthly visitors · 380M room nights</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Role</span>
-          <span class="meta-value">Senior UX Manager</span>
+  <article class="cs-content">
+
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>Overview</h2></div>
+      <div class="cs-section-body">
+        <p>
+          Expedia Partner Central is the native iOS and Android platform that connects hoteliers and holiday home owners to 200+ booking sites — including Expedia, Hotels.com, Vrbo, Travelocity and Orbitz — reaching <strong>112 million monthly visitors</strong> and <strong>380 million room night bookings annually.</strong>
+        </p>
+        <p>
+          As Senior UX Manager, I led the multi-disciplinary design team responsible for the entire partner-facing mobile experience: listing management, booking flows, performance analytics, guest communications, and the platform's first machine learning feature. In 12 months, we moved the app store rating from <strong>3.5 to 4.5 stars.</strong>
+        </p>
+      </div>
+    </section>
+
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>The Challenge</h2></div>
+      <div class="cs-section-body">
+        <p>
+          Expedia's hotel partners — from boutique independents to global chains — were managing critical revenue decisions through Partner Central: setting rates, adjusting inventory, responding to competitor pricing, analysing performance. But the platform had grown organically over years into a sprawling, desktop-centric experience that was difficult to use and harder to act on quickly.
+        </p>
+        <p>
+          The real gap was intelligence. Expedia had extraordinary data — drawn from hundreds of millions of global bookings — that could tell a hotel exactly how their pricing compared to similar properties, when demand was peaking in their market, and what actions would drive the most revenue. Partners had access to none of that insight in a usable form. They were sitting on the most valuable data in travel and couldn't see it.
+        </p>
+        <p>
+          The 3.5 star rating told the story. Partners were using the app because they had to — not because it was helping them.
+        </p>
+      </div>
+    </section>
+
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>Design Strategy &amp; Leadership</h2></div>
+      <div class="cs-section-body">
+        <p>
+          I ran a design sprint at the start of the project — bringing together product, data science, engineering and partner success to align on the problem before committing to a direction. The sprint surfaced the key insight: partners didn't want dashboards. They wanted <strong>recommendations with context.</strong> Tell me what to do, show me why, then let me act in one tap.
+        </p>
+        <p>
+          That framing drove three parallel workstreams.
+        </p>
+
+        <h3>Opportunities — Expedia's first production ML feature for partners</h3>
+        <p>
+          I led the design of Opportunities: a machine learning system that surfaced personalised, data-driven pricing and performance recommendations directly in the app. The model drew on Expedia's global dataset to tell individual properties things like <em>"similar properties near you are priced $X lower and receiving 40% more bookings this weekend."</em>
+        </p>
+        <p>
+          This was one of Expedia's first applications of ML in a partner-facing product — so there was no existing playbook. The design challenge was making algorithmic recommendations feel credible without overwhelming partners with the underlying model. We designed transparency into the recommendations — showing enough context to build trust, with the option to drill deeper for partners who wanted the data behind the suggestion.
+        </p>
+
+        <h3>Notification Centre — turning alerts into action</h3>
+        <p>
+          Partners were missing time-sensitive opportunities — competitor price drops, demand spikes, booking cancellations — because there was no unified alert system. I led the design of Notification Centre: a prioritised feed of actionable updates that drove measurable increases in app retention and daily active usage. Notifications weren't informational; they were designed as entry points to action. Every alert could be acted on without leaving the notification itself.
+        </p>
+
+        <h3>RTL design &amp; emerging market research</h3>
+        <p>
+          Partner Central served a global audience with distinct UX needs. I specialised the Arabic mobile app for right-to-left markets — a full rethink of layout, navigation, typography and interaction patterns, not a mirrored translation. I also conducted user research in Thailand, informing performance-conscious, data-light design for Android-dominant, lower-bandwidth environments where the standard Western app assumptions broke down.
+        </p>
+      </div>
+    </section>
+
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>Process &amp; Outcomes</h2></div>
+      <div class="cs-section-body">
+        <p>
+          The design sprint methodology created shared problem ownership before a single pixel was designed. When engineering and product had been in the room watching real hoteliers struggle with the existing interface, conversations about technical trade-offs changed. Design decisions had context. That alignment compressed the usual redesign cycle significantly.
+        </p>
+        <p>
+          The Opportunities ML feature launched to partners and was one of the first places Expedia demonstrated that its data advantage could be surfaced directly to the partners who needed it most. The Notification Centre drove measurable lifts in daily active usage — the partners who engaged with the notification system used the app more consistently because there was now always a reason to come back.
+        </p>
+        <p>
+          The headline metric: <strong>app store rating moved from 3.5 to 4.5 stars in 12 months.</strong> That's not a design metric — it's a product quality metric. It reflects the combined impact of better core flows, faster performance optimisation from the emerging markets research, and the intelligence layer that made partners feel the app was actually working for them.
+        </p>
+
+        <div class="cs-metrics">
+          <div class="metric-card">
+            <div class="metric-value">3.5→4.5★</div>
+            <div class="metric-label">App store rating in 12 months</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">112M</div>
+            <div class="metric-label">Monthly visitors on the platform</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">380M</div>
+            <div class="metric-label">Room night bookings annually</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">200+</div>
+            <div class="metric-label">Booking sites in the partner network</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- THE CHALLENGE -->
-    <section class="case-study-section">
-      <h2>The Challenge</h2>
-      <p>
-        Expedia's hotel partners — from boutique independents to global chains — were managing critical revenue decisions through Partner Central: setting rates, adjusting inventory, responding to competitor pricing, analysing performance. But the platform had grown organically over years into a sprawling, desktop-centric experience that was difficult to use and harder to act on quickly.
-      </p>
-      <p>
-        The real gap was intelligence. Expedia had extraordinary data — drawn from hundreds of millions of global bookings — that could tell a hotel exactly how their pricing compared to similar properties, when demand was peaking in their market, and what actions would drive the most revenue. Partners had access to none of that insight in a usable form. They were sitting on the most valuable data in travel and couldn't see it.
-      </p>
-      <p>
-        The 3.5 star rating told the story. Partners were using the app because they had to — not because it was helping them.
-      </p>
-    </section>
-
-    <!-- DESIGN STRATEGY -->
-    <section class="case-study-section">
-      <h2>Design Strategy & Leadership</h2>
-      <p>
-        I ran a design sprint at the start of the project — bringing together product, data science, engineering and partner success to align on the problem before committing to a direction. The sprint surfaced the key insight: partners didn't want dashboards. They wanted <strong>recommendations with context.</strong> Tell me what to do, show me why, then let me act in one tap.
-      </p>
-      <p>
-        That framing drove three parallel workstreams:
-      </p>
-
-      <h3 class="case-study-subheading">Opportunities — Expedia's First Production ML Feature for Partners</h3>
-      <p>
-        I led the design of Opportunities: a machine learning system that surfaced personalised, data-driven pricing and performance recommendations directly in the app. The model drew on Expedia's global dataset to tell individual properties things like <em>"similar properties near you are priced $X lower and receiving 40% more bookings this weekend."</em>
-      </p>
-      <p>
-        This was one of Expedia's first applications of ML in a partner-facing product — so there was no existing playbook. The design challenge was making algorithmic recommendations feel credible without overwhelming partners with the underlying model. We designed transparency into the recommendations — showing enough context to build trust, with the option to drill deeper for partners who wanted the data behind the suggestion.
-      </p>
-
-      <h3 class="case-study-subheading">Notification Centre — Turning Alerts into Action</h3>
-      <p>
-        Partners were missing time-sensitive opportunities — competitor price drops, demand spikes, booking cancellations — because there was no unified alert system. I led the design of Notification Centre: a prioritised feed of actionable updates that drove measurable increases in app retention and daily active usage. Notifications weren't informational; they were designed as entry points to action. Every alert could be acted on without leaving the notification itself.
-      </p>
-
-      <h3 class="case-study-subheading">RTL Design & Emerging Market Research</h3>
-      <p>
-        Partner Central served a global audience with distinct UX needs. I specialised the Arabic mobile app for right-to-left markets — a full rethink of layout, navigation, typography and interaction patterns, not a mirrored translation. I also conducted user research in Thailand, informing performance-conscious, data-light design for Android-dominant, lower-bandwidth environments where the standard Western app assumptions broke down.
-      </p>
-    </section>
-
-    <!-- PROCESS & OUTCOMES -->
-    <section class="case-study-section">
-      <h2>Process & Outcomes</h2>
-      <p>
-        The design sprint methodology created shared problem ownership before a single pixel was designed. When engineering and product had been in the room watching real hoteliers struggle with the existing interface, conversations about technical trade-offs changed. Design decisions had context. That alignment compressed the usual redesign cycle significantly.
-      </p>
-      <p>
-        The Opportunities ML feature launched to partners and was one of the first places Expedia demonstrated that its data advantage could be surfaced directly to the partners who needed it most. The Notification Centre drove measurable lifts in daily active usage — the partners who engaged with the notification system used the app more consistently because there was now always a reason to come back.
-      </p>
-      <p>
-        The headline metric: <strong>app store rating moved from 3.5 to 4.5 stars in 12 months.</strong> That's not a design metric — it's a product quality metric. It reflects the combined impact of better core flows, faster performance optimisation from the emerging markets research, and the intelligence layer that made partners feel the app was actually working for them.
-      </p>
-
-      <div class="case-study-metrics">
-        <div class="metric-card">
-          <div class="metric-value">3.5→4.5★</div>
-          <div class="metric-label">App store rating in 12 months</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">112M</div>
-          <div class="metric-label">Monthly visitors on the platform</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">380M</div>
-          <div class="metric-label">Room night bookings annually</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">200+</div>
-          <div class="metric-label">Booking sites in the partner network</div>
-        </div>
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>Reflection &amp; Impact</h2></div>
+      <div class="cs-section-body">
+        <p>
+          Designing Opportunities taught me something that's shaped how I approach AI and ML products ever since: the hardest part isn't the algorithm — it's the disclosure. How much of the model do you show? How do you make a recommendation feel credible without requiring the user to understand machine learning? The answer we found — show the outcome, explain the context, offer the data for those who want it — became a principle I've carried forward into every AI product since.
+        </p>
+        <p>
+          The RTL and emerging market work also changed how I run design teams. Global products require global research. Designing for Thai Android users on lower-bandwidth connections from a Sydney office requires humility — the assumptions that work in high-end markets are frequently wrong, and the only way to find out is to go and look. That practice of market-specific research became a non-negotiable part of how my teams work.
+        </p>
+        <p>
+          The 3.5 to 4.5 star rating is the metric I'm most proud of from this period. It's a signal from the partners themselves that the product shifted from tolerated to genuinely useful. That's the real test.
+        </p>
       </div>
-    </section>
-
-    <!-- REFLECTION -->
-    <section class="case-study-section">
-      <h2>Reflection & Impact</h2>
-      <p>
-        Designing Opportunities taught me something that's shaped how I approach AI and ML products ever since: the hardest part isn't the algorithm — it's the disclosure. How much of the model do you show? How do you make a recommendation feel credible without requiring the user to understand machine learning? The answer we found — show the outcome, explain the context, offer the data for those who want it — became a principle I've carried forward into every AI product since.
-      </p>
-      <p>
-        The RTL and emerging market work also changed how I run design teams. Global products require global research. Designing for Thai Android users on lower-bandwidth connections from a Sydney office requires humility — the assumptions that work in high-end markets are frequently wrong, and the only way to find out is to go and look. That practice of market-specific research became a non-negotiable part of how my teams work.
-      </p>
-      <p>
-        The 3.5 to 4.5 star rating is the metric I'm most proud of from this period. It's a signal from the partners themselves that the product shifted from tolerated to genuinely useful. That's the real test.
-      </p>
     </section>
 
   </article>
 
+  <a href="alpaca.html" class="cs-next" style="display:block;">
+    <div class="cs-next-label">Next Case Study</div>
+    <div class="cs-next-title">Alpaca Markets — Design Direction ↗</div>
+  </a>
+
   <footer class="footer">
-    <div class="footer-inner">
-      <span>© 2025 Alex McMahon</span>
-      <span>Brisbane, Australia</span>
-      <span>alexmcmahon.com.au</span>
-    </div>
+    <span>© 2026 Alex McMahon · Sunshine Coast, Australia</span>
+    <span>Built with Claude Code</span>
   </footer>
 
-  <script src="../script.js"></script>
+  <script>
+    'use strict';
+
+    const shimmerEl = document.querySelector('.shimmer');
+    if (shimmerEl) setTimeout(() => shimmerEl.classList.add('active'), 1000);
+
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal, .metric-card').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>

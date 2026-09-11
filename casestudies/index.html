@@ -6,105 +6,287 @@
   <title>Case Studies — Alex McMahon</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #fafaf8;
+      --black: #0a0a0a;
+      --gray-700: #3d3d3d;
+      --gray-500: #6b6b6b;
+      --gray-400: #8a8a8a;
+      --gray-300: #b0b0b0;
+      --gray-200: #d4d4d4;
+      --gray-100: #ebebeb;
+      --gold: #b8965a;
+      --gold-light: #d4b87a;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--black); color: var(--white); }
+    a { color: inherit; text-decoration: none; }
+
+    .persistent-cta {
+      position: fixed;
+      top: 36px;
+      right: clamp(32px, 8vw, 140px);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      text-decoration: none;
+      z-index: 10;
+      transition: color 0.3s;
+    }
+    .persistent-cta:hover { color: var(--black); }
+
+    .back-link {
+      position: fixed;
+      top: 36px;
+      left: clamp(32px, 8vw, 140px);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      z-index: 10;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--black); }
+
+    /* Hero */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px clamp(32px, 8vw, 140px) 80px;
+    }
+
+    .hero-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 100px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -2px;
+      color: var(--black);
+      max-width: 900px;
+      padding-bottom: 0.05em;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 1s 0.5s forwards;
+    }
+
+    /* Shimmer lives on an inner span so its animation can't clobber the fade-in */
+    .hero-title .shimmer { display: block; }
+
+    .shimmer {
+      background: linear-gradient(
+        90deg,
+        var(--black) 0%, var(--black) 44%,
+        var(--gold) 48%, var(--gold-light) 50%, var(--gold) 52%,
+        var(--black) 56%, var(--black) 100%
+      );
+      background-size: 400% 100%;
+      background-position: 0% center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .shimmer.active {
+      animation: shimmerSweep 6s ease forwards;
+    }
+
+    @keyframes shimmerSweep {
+      0% { background-position: 100% center; }
+      70% { background-position: 0% center; }
+      100% { background-position: 0% center; }
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--gray-500);
+      max-width: 500px;
+      margin-top: 32px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 1s 0.8s forwards;
+    }
+
+    /* Case Study Cards */
+    .cards-section {
+      padding: 0 clamp(32px, 8vw, 140px) 140px;
+    }
+
+    .cs-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .cs-card {
+      border: 1px solid var(--gray-100);
+      border-radius: 20px;
+      padding: 48px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      opacity: 0;
+      transform: translateY(30px) scale(0.97);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .cs-card.visible { opacity: 1; transform: none; }
+    .cs-card:nth-child(2) { transition-delay: 0.1s; }
+    .cs-card:nth-child(3) { transition-delay: 0.2s; }
+
+    .cs-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+      border-color: var(--gray-200);
+    }
+
+    .cs-card-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+
+    .cs-card-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    .cs-card-excerpt {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--gray-500);
+      flex: 1;
+    }
+
+    .cs-card-arrow {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-300);
+      transition: color 0.3s;
+      margin-top: 8px;
+    }
+
+    .cs-card:hover .cs-card-arrow { color: var(--black); }
+
+    /* Footer */
+    .footer {
+      padding: 40px clamp(32px, 8vw, 140px);
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .cs-cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .footer { flex-direction: column; gap: 8px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-follower" aria-hidden="true"></div>
+  <a href="/" class="back-link">← Home</a>
+  <a href="mailto:hello@alexmcmahon.com.au" class="persistent-cta">Get in Touch ↗</a>
 
-  <!-- ===================== NAV ===================== -->
-  <nav class="nav">
-    <a href="/" class="nav-logo">am</a>
-    <div class="nav-links">
-      <a href="/#about" class="nav-link">about</a>
-      <a href="/#speaking" class="nav-link">speaking</a>
-      <a href="/#ai" class="nav-link">ai-work</a>
-    </div>
-    <a href="mailto:hello@alexmcmahon.com.au" class="nav-cta">contact</a>
-  </nav>
-
-  <!-- ===================== HERO ===================== -->
-  <section class="hero-casestudies" id="hero">
-    <div class="hero-content">
-      <div class="case-study-label reveal-item">case studies</div>
-      <h1 class="case-study-title" style="margin-bottom: 1rem;">case_studies/</h1>
-      <p class="case-study-meta reveal-item delay-2">
-        Strategic design leadership and organizational impact<br />
-        across AI, travel, and fintech products.
-      </p>
-    </div>
+  <section class="hero">
+    <div class="hero-label">Selected Work</div>
+    <h1 class="hero-title"><span class="shimmer">Case Studies.</span></h1>
+    <p class="hero-sub">Strategic design leadership and impact across AI, travel, and fintech products.</p>
   </section>
 
-  <!-- ===================== CASE STUDIES GRID ===================== -->
-  <section class="case-studies-section">
-    <div class="case-studies-grid">
+  <section class="cards-section">
+    <div class="cs-cards" id="csCards">
 
-      <!-- LMG Case Study Card -->
-      <article class="case-study-card reveal-item">
-        <div class="case-study-card-visual"></div>
-        <div class="case-study-card-body">
-          <h2 class="case-study-card-title">Loan Market Group</h2>
-          <p class="case-study-card-excerpt">
-            Designing AI assistants for 6,000+ mortgage brokers — trust, accountability, and human oversight in a regulated industry.
-          </p>
-          <a href="lmg.html" class="case-study-card-link">
-            View Case Study
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </article>
+      <a href="lmg.html" class="cs-card">
+        <div class="cs-card-eyebrow">Head of Design</div>
+        <h2 class="cs-card-title">Loan Market Group</h2>
+        <p class="cs-card-excerpt">Designing AI assistants for 6,000+ mortgage brokers — trust, accountability, and human oversight in regulated finance.</p>
+        <div class="cs-card-arrow">View Case Study ↗</div>
+      </a>
 
-      <!-- Expedia Case Study Card -->
-      <article class="case-study-card reveal-item delay-1">
-        <div class="case-study-card-visual"></div>
-        <div class="case-study-card-body">
-          <h2 class="case-study-card-title">Expedia Group</h2>
-          <p class="case-study-card-excerpt">
-            Leading design for Partner Central — data-informed intelligence for 1M+ hotel partners, and Expedia's first B2B mobile app.
-          </p>
-          <a href="expedia.html" class="case-study-card-link">
-            View Case Study
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </article>
+      <a href="expedia.html" class="cs-card">
+        <div class="cs-card-eyebrow">Senior UX Manager</div>
+        <h2 class="cs-card-title">Expedia Group</h2>
+        <p class="cs-card-excerpt">Leading design for Partner Central — ML-powered intelligence for 1M+ hotel partners, and a 3.5 to 4.5 star app store turnaround.</p>
+        <div class="cs-card-arrow">View Case Study ↗</div>
+      </a>
 
-      <!-- Alpaca Markets Case Study Card -->
-      <article class="case-study-card reveal-item delay-2">
-        <div class="case-study-card-visual"></div>
-        <div class="case-study-card-body">
-          <h2 class="case-study-card-title">Alpaca Markets</h2>
-          <p class="case-study-card-excerpt">
-            Building design leadership for a global fintech — Options Trading, self-clearing infrastructure, and $180B in trading volume.
-          </p>
-          <a href="alpaca.html" class="case-study-card-link">
-            View Case Study
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </article>
+      <a href="alpaca.html" class="cs-card">
+        <div class="cs-card-eyebrow">Director of Design</div>
+        <h2 class="cs-card-title">Alpaca Markets</h2>
+        <p class="cs-card-excerpt">Design direction for a $1.15B API-first brokerage — Options trading, self-clearing infrastructure, and 200+ fintech partners.</p>
+        <div class="cs-card-arrow">View Case Study ↗</div>
+      </a>
 
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
-    <div class="footer-inner">
-      <span>© 2025 Alex McMahon</span>
-      <span>Brisbane, Australia</span>
-      <span>alexmcmahon.com.au</span>
-    </div>
+    <span>© 2026 Alex McMahon · Sunshine Coast, Australia</span>
+    <span>Built with Claude Code</span>
   </footer>
 
-  <script src="../script.js"></script>
+  <script>
+    'use strict';
+
+    // Shimmer
+    const shimmerEl = document.querySelector('.shimmer');
+    if (shimmerEl) setTimeout(() => shimmerEl.classList.add('active'), 1200);
+
+    // Card reveal
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.cs-card').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>

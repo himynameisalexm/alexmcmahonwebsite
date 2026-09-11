@@ -3,206 +3,823 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LMG Case Study — Alex McMahon</title>
+  <title>Loan Market Group — Alex McMahon</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #fafaf8;
+      --black: #0a0a0a;
+      --gray-700: #3d3d3d;
+      --gray-500: #6b6b6b;
+      --gray-400: #8a8a8a;
+      --gray-300: #b0b0b0;
+      --gray-200: #d4d4d4;
+      --gray-100: #ebebeb;
+      --gold: #b8965a;
+      --gold-light: #d4b87a;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--black); color: var(--white); }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== NAV ===== */
+    .persistent-cta {
+      position: fixed;
+      top: 36px;
+      right: clamp(32px, 8vw, 140px);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      z-index: 10;
+      transition: color 0.3s;
+    }
+    .persistent-cta:hover { color: var(--black); }
+
+    .back-link {
+      position: fixed;
+      top: 36px;
+      left: clamp(32px, 8vw, 140px);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      z-index: 10;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--black); }
+
+    /* ===== HERO ===== */
+    .cs-hero {
+      padding: 180px clamp(32px, 8vw, 140px) 100px;
+    }
+
+    .cs-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .cs-title {
+      font-family: var(--serif);
+      font-size: clamp(44px, 7vw, 92px);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -2px;
+      max-width: 1000px;
+      padding-bottom: 0.05em;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 1s 0.4s forwards;
+    }
+
+    /* Shimmer lives on an inner span so its animation can't clobber the fade-in */
+    .cs-title .shimmer { display: block; }
+
+    .shimmer {
+      background: linear-gradient(
+        90deg,
+        var(--black) 0%, var(--black) 44%,
+        var(--gold) 48%, var(--gold-light) 50%, var(--gold) 52%,
+        var(--black) 56%, var(--black) 100%
+      );
+      background-size: 400% 100%;
+      background-position: 0% center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .shimmer.active { animation: shimmerSweep 6s ease forwards; }
+
+    @keyframes shimmerSweep {
+      0% { background-position: 100% center; }
+      70% { background-position: 0% center; }
+      100% { background-position: 0% center; }
+    }
+
+    .cs-meta {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--gray-500);
+      max-width: 560px;
+      margin-top: 32px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 1s 0.7s forwards;
+    }
+
+    /* ===== FACTS BAR ===== */
+    .facts {
+      display: flex;
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .fact {
+      flex: 1;
+      padding: 44px clamp(24px, 4vw, 48px);
+      border-right: 1px solid var(--gray-100);
+    }
+    .fact:last-child { border-right: none; }
+
+    .fact-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+
+    .fact-value {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    /* ===== CONTENT ===== */
+    .cs-content {
+      padding: 120px clamp(32px, 6vw, 110px);
+    }
+
+    .cs-section { margin-bottom: 120px; }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+      padding-bottom: 0.05em;
+      max-width: 680px;
+    }
+
+    .cs-section h3 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 2.6vw, 32px);
+      font-weight: 400;
+      line-height: 1.3;
+      margin: 72px 0 24px;
+      max-width: 680px;
+    }
+
+    .cs-section p {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--gray-700);
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+
+    .cs-section p strong { font-weight: 500; color: var(--black); }
+    .cs-section p em { font-style: italic; color: var(--gray-500); }
+
+    .cs-link {
+      color: var(--black);
+      font-weight: 400;
+      border-bottom: 1px solid var(--gray-200);
+      transition: border-color 0.3s;
+    }
+    .cs-link:hover { border-color: var(--black); }
+
+    /* ===== LIST ===== */
+    .cs-list {
+      list-style: none;
+      max-width: 680px;
+      margin: 40px 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .cs-list li {
+      border: 1px solid var(--gray-100);
+      border-radius: 20px;
+      padding: 28px 32px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--gray-500);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cs-list li:hover {
+      border-color: var(--gray-200);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    .cs-list li strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    /* ===== QUOTE ===== */
+    .cs-quote {
+      max-width: 680px;
+      margin: 48px 0;
+      padding-left: 32px;
+      border-left: 2px solid var(--gold);
+    }
+
+    .cs-quote blockquote {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .cs-quote cite {
+      font-style: normal;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray-400);
+      letter-spacing: 0.02em;
+    }
+    .cs-quote cite a { border-bottom: 1px solid var(--gray-200); transition: border-color 0.3s; }
+    .cs-quote cite a:hover { border-color: var(--gray-400); }
+
+    /* ===== MEDIA =====
+       Drop screenshots / MP4s into casestudies/assets/ and uncomment the
+       matching <figure> below. See assets/README.md for the shot list. */
+    .cs-media {
+      margin: 64px 0;
+      max-width: 980px;
+    }
+
+    .cs-media-frame {
+      border: 1px solid var(--gray-100);
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--off-white);
+      line-height: 0;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cs-media-frame:hover {
+      border-color: var(--gray-200);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.06);
+    }
+
+    .cs-media img,
+    .cs-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cs-media figcaption {
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--gray-400);
+      max-width: 640px;
+    }
+
+    /* Wide: breaks past the 720px prose column for full product shots */
+    .cs-media-wide { max-width: none; }
+
+    /* Two shots side by side */
+    .cs-media-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 64px 0;
+      align-items: start;
+    }
+    .cs-media-pair .cs-media { margin: 0; max-width: none; }
+
+    /* Portrait / device captures sit smaller and left-aligned */
+    .cs-media-portrait { max-width: 420px; }
+
+    /* Cropped UI details — capped at native width so the text never upscales */
+    .cs-media-crop { max-width: 722px; }
+
+    /* ===== EDITORIAL GRID =====
+       Wide screens get two structural columns:
+         · a sticky rail carrying the section title, so the page always has a
+           left column doing work instead of sitting empty
+         · the body, where subsections that own media become side-by-side
+           blocks — media anchored to the text it illustrates, never floating
+           to wherever it happened to fall in source order.
+       Below 1180px the whole thing collapses back to a single column. */
+    @media (min-width: 1180px) {
+      .cs-section {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        column-gap: clamp(40px, 4vw, 80px);
+        align-items: start;
+      }
+
+      .cs-section-rail {
+        position: sticky;
+        top: 100px;
+      }
+
+      .cs-section-rail h2 {
+        font-size: clamp(26px, 2.2vw, 34px);
+        letter-spacing: -0.5px;
+        margin-bottom: 0;
+        color: var(--gray-700);
+      }
+
+      .cs-block {
+        display: grid;
+        /* proportional, so the prose column doesn't get squeezed on 1440s */
+        grid-template-columns: minmax(0, 1fr) clamp(300px, 34%, 400px);
+        column-gap: clamp(36px, 3.2vw, 60px);
+        align-items: start;
+      }
+
+      .cs-block-rail {
+        position: sticky;
+        top: 100px;
+      }
+
+      .cs-block-rail > .cs-media,
+      .cs-block-rail > .cs-quote {
+        margin: 6px 0 0;
+        max-width: none;
+      }
+
+      .cs-block-rail > .cs-quote + .cs-media,
+      .cs-block-rail > .cs-media + .cs-quote { margin-top: 32px; }
+
+      .cs-block-rail .cs-quote blockquote { font-size: 21px; }
+      .cs-block-rail figcaption { max-width: none; }
+    }
+
+    @media (max-width: 768px) {
+      .cs-media-pair { grid-template-columns: 1fr; }
+    }
+
+    /* ===== METRICS ===== */
+    .cs-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 64px;
+    }
+
+    .metric-card {
+      border: 1px solid var(--gray-100);
+      border-radius: 20px;
+      padding: 40px 28px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .metric-card.visible { opacity: 1; transform: none; }
+    .metric-card:nth-child(2) { transition-delay: 0.08s; }
+    .metric-card:nth-child(3) { transition-delay: 0.16s; }
+    .metric-card:nth-child(4) { transition-delay: 0.24s; }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+      border-color: var(--gray-200);
+    }
+
+    .metric-value {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 52px);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--gray-500);
+    }
+
+    /* ===== NEXT ===== */
+    .cs-next {
+      padding: 100px clamp(32px, 8vw, 140px);
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .cs-next-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 20px;
+    }
+
+    .cs-next-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.2;
+      transition: color 0.3s;
+    }
+    .cs-next-title:hover { color: var(--gray-500); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 40px clamp(32px, 8vw, 140px);
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .facts { flex-wrap: wrap; }
+      .fact { flex: 1 1 100%; border-right: none; border-bottom: 1px solid var(--gray-100); }
+      .fact:last-child { border-bottom: none; }
+      .cs-metrics { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .cs-hero { padding-top: 140px; }
+      .back-link, .persistent-cta { font-size: 10px; }
+      .footer { flex-direction: column; gap: 8px; }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-follower" aria-hidden="true"></div>
+  <a href="index.html" class="back-link">← Case Studies</a>
+  <a href="mailto:hello@alexmcmahon.com.au" class="persistent-cta">Get in Touch ↗</a>
 
-  <nav class="nav">
-    <a href="/" class="nav-logo">AM</a>
-    <div class="nav-links">
-      <a href="index.html" class="nav-link">← Back to Case Studies</a>
-    </div>
-    <a href="mailto:hello@alexmcmahon.com.au" class="nav-cta">Get in Touch</a>
-  </nav>
-
-  <!-- HERO -->
-  <section class="case-study-hero">
-    <div class="case-study-hero-content">
-      <div class="case-study-label reveal-item">Case Study · Loan Market Group</div>
-      <h1 class="case-study-title reveal-item">Designing AI Brokers Can Trust</h1>
-      <p class="case-study-meta reveal-item delay-1">
-        Head of Design · MyCRM Intelligence · AI in Regulated Finance
-      </p>
-    </div>
+  <!-- ===== HERO ===== -->
+  <section class="cs-hero">
+    <div class="cs-eyebrow">Case Study · Loan Market Group</div>
+    <h1 class="cs-title"><span class="shimmer">Designing AI brokers can trust.</span></h1>
+    <p class="cs-meta">Head of Design · MyCRM Intelligence · Releasing the first AI assistants to 6,000+ brokers across Australia and New Zealand.</p>
   </section>
 
-  <article class="case-study-content">
+  <!-- ===== FACTS ===== -->
+  <div class="facts">
+    <div class="fact">
+      <div class="fact-label">Audience</div>
+      <div class="fact-value">6,000+ mortgage brokers &amp; advisers</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">Team</div>
+      <div class="fact-value">8 designers · 2 design managers · 1 senior researcher</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">Role</div>
+      <div class="fact-value">Head of Design · Co-PM, My Data Analyst</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">Recognition</div>
+      <div class="fact-value">Tribe Award, LMG Sync Up 2025</div>
+    </div>
+  </div>
 
-    <!-- OVERVIEW -->
-    <section class="case-study-section">
-      <h2>Overview</h2>
-      <p>
+  <!-- ===== CONTENT ===== -->
+  <article class="cs-content">
+
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>Overview</h2></div>
+      <div class="cs-section-body">
+        <p>
         LMG (Loan Market Group) is Australia and New Zealand's largest mortgage aggregator — 6,000+ brokers and advisers, a $370B loan book, $143B settled in 2025 alone. MyCRM is the #1 broker software platform in AU/NZ, as voted by brokers themselves.
-      </p>
-      <p>
-        As Head of Design, I led the design of <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link">MyCRM Intelligence</a> — LMG's embedded AI suite — and shipped the platform's first AI tools to every broker in the business. I built LMG's first AI research department from scratch, authored the design standard governing how AI behaves across the entire platform, and won a landmark compliance design decision that set a new precedent for AI disclosure in regulated financial services.
-      </p>
-      <p>
+        </p>
+
+        <p>
+        As Head of Design, I led the design of <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link">MyCRM Intelligence</a> — LMG's embedded AI suite — and shipped the platform's first AI tools to every broker in the business. I named the assistant suite alongside the Head of Product, co-created the AI strategy with the go-to-market lead for customer products, built LMG's first AI research function from scratch, authored the design standard governing how AI behaves across the entire platform, and won a landmark compliance design decision that set a new precedent for AI disclosure in regulated financial services.
+        </p>
+
+        <p>
+        The role ran wider than design. I was <strong>co-product manager for My Data Analyst</strong>, and I travelled Australia speaking at broker events on behalf of the product and experience teams — presenting the AI assistants and the roadmap directly to the people who would use them.
+        </p>
+
+        <p>
         In 2025, my team won the <strong>Tribe Award at LMG's Sync Up</strong> — company-wide recognition for being the first to ship AI products on the MyCRM platform.
-      </p>
-      <div class="case-study-meta-grid">
-        <div class="meta-item">
-          <span class="meta-label">Audience</span>
-          <span class="meta-value">6,000+ mortgage brokers & advisers</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Team</span>
-          <span class="meta-value">8 designers + Senior Researcher</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Role</span>
-          <span class="meta-value">Head of Design</span>
-        </div>
+        </p>
       </div>
     </section>
 
-    <!-- THE CHALLENGE -->
-    <section class="case-study-section">
-      <h2>The Challenge</h2>
-      <p>
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>The Challenge</h2></div>
+      <div class="cs-section-body">
+        <p>
         LMG's Group Executive of Product, Tech and Data <a href="https://www.mpamag.com/au/mortgage-industry/technology/hightech-hightouch-lmgs-vision-of-the-augmented-broker/567160" target="_blank" rel="noopener" class="cs-link">put it plainly at the 2026 Growth Summit</a>: <em>"Between 95% and 98% of companies aren't proving ROI in their AI rollout."</em> LMG was determined not to be in that majority. But the challenge wasn't just proving business value — it was navigating one of the hardest design contexts for AI: a highly regulated, high-stakes industry where a poorly framed suggestion could lead to non-compliant advice, client harm, and professional liability.
-      </p>
-      <p>
+        </p>
+        <p>
         Mortgage brokers operate under ASIC and the National Consumer Credit Protection Act (NCCP). Every recommendation they make — and every document they lodge — carries legal weight. As LMG's Chief Risk Officer noted at the same summit: <em>"Non-compliance is now the most expensive way to run a business."</em> Introducing AI into that context meant designing for trust, accountability, and auditability simultaneously. It wasn't a UX challenge. It was a regulatory challenge wearing UX clothes.
-      </p>
-      <p>
-        At the same time, the opportunity was real. Brokers were spending hours per client on documentation — drafting rationales, checking applications for risk, managing compliance paperwork. If we could design AI that actually earned trust in this environment, it would be transformative. If we got it wrong, the consequences would be felt by real people's finances.
-      </p>
+        </p>
+        <p>
+        At the same time, the opportunity was real. Brokers were spending hours per client on documentation — drafting rationales, checking applications for risk, managing compliance paperwork. If we could design AI that actually earned trust in this environment, it would be transformative. If we got it wrong, the consequences would be felt in real people's finances.
+        </p>
+      </div>
     </section>
 
-    <!-- DESIGN STRATEGY -->
-    <section class="case-study-section">
-      <h2>Design Strategy & Leadership</h2>
-      <p>
-        I set the design vision on a single principle: <strong>the broker is always the author.</strong> AI can draft, surface, and flag — but the broker reviews, edits, and owns every output. This isn't just a UX stance; it's the answer to the accountability question that regulators ask. If something goes wrong, a human was the author at every critical step. As Whitney Cali <a href="https://www.brokerdaily.au/technology/21325-lmg-reveals-ai-roadmap-focused-on-broker-efficiency" target="_blank" rel="noopener" class="cs-link">later described the product vision</a>: <em>"Brokers are still driving the car, but the AI is helping you get to your destination."</em>
-      </p>
-      <p>
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>Design Strategy &amp; Leadership</h2></div>
+      <div class="cs-section-body">
+        <p>
+        I set the design vision on a single principle: <strong>the broker is always the author.</strong> AI can draft, surface, and flag — but the broker reviews, edits, and owns every output. This isn't just a UX stance; it's the answer to the accountability question regulators ask. If something goes wrong, a human was the author at every critical step. As Whitney Cali <a href="https://www.brokerdaily.au/technology/21325-lmg-reveals-ai-roadmap-focused-on-broker-efficiency" target="_blank" rel="noopener" class="cs-link">later described the product vision</a>: <em>"Brokers are still driving the car, but the AI is helping you get to your destination."</em>
+        </p>
+        <p>
         That principle cascaded into every design decision across the platform. But the work I'm most proud of goes beyond a design principle — it's the systems I built to make it real at scale.
-      </p>
+        </p>
 
-      <h3 class="case-study-subheading">The 13-Category Agentic AI Pattern Library</h3>
-      <p>
+        <h3>Co-owning the AI strategy</h3>
+        <p>
+        The AI strategy wasn't handed to design to execute. I co-created it with the go-to-market lead for customer products — pairing the design and research view of what brokers would actually trust and adopt with the commercial view of how the suite would be positioned, packaged and sold. That partnership meant the roadmap was shaped by user evidence and market reality at the same time, instead of one being retrofitted to the other after the fact.
+        </p>
+
+        <h3>Naming and framing the assistant suite</h3>
+        <p>
+        Working with the Head of Product, I created the naming convention for every AI assistant on the platform: <strong>My</strong> + the job it does — My Note Writer, My QA, My Data Analyst, My Documents — sitting under the umbrella of <strong>MyCRM Intelligence</strong>. The "My" carried over from MyCRM itself, but it did more than maintain brand continuity. It framed each assistant as the broker's own tool, working on their behalf, rather than an external system making decisions about their work. The name did quiet work in service of the authorship principle.
+        </p>
+
+        <h3>A design framework for building AI products</h3>
+        <p>
+        I created a framework the design team used to build every AI product: how the assistant is introduced and onboarded, how a broker learns to use it, how the output is presented and verified, and how success is measured. Before this existed, each AI feature was being designed as a one-off. Afterwards, every team started from the same set of questions — which meant the answers were consistent across the platform, and brokers learned one mental model instead of four.
+        </p>
+
+        <h3>The 13-category agentic AI pattern library</h3>
+        <p>
         I authored LMG's Agentic AI Pattern Library — 13 categories of design standards governing how AI behaves across every surface of MyCRM Intelligence. It covers confidence signalling, progressive disclosure, error recovery, contestability, and human-override states. It was written to pre-empt the Australian Government DTA's AI standards on explainability and contestability before those standards were formalised — so when regulation arrived, we were already compliant.
-      </p>
-      <p>
+        </p>
+        <p>
         This pattern library is now the design constitution for everything AI at LMG. New features don't get built without it.
-      </p>
+        </p>
 
-      <h3 class="case-study-subheading">Winning the ASIC/NCCP Compliance Design Decision</h3>
-      <p>
+        <h3>Winning the ASIC/NCCP compliance design decision</h3>
+        <p>
         The most consequential design decision I made wasn't a layout choice — it was a regulatory argument. Legal and compliance initially required a mandatory checkbox at the point of every AI interaction: a standard CYA disclosure. I argued against it.
-      </p>
-      <p>
+        </p>
+        <p>
         The mandatory checkbox would have trained brokers to dismiss AI outputs without reading them — eroding the very trust we were trying to build. Instead, I proposed contextual disclosure at the moment of consequence: when a broker copies an AI-generated note into their application, that's when they're told they're using AI-generated content. At the exact moment it matters, not before.
-      </p>
-      <p>
+        </p>
+        <p>
         The argument was accepted. That contextual disclosure pattern is now reused across the entire MyCRM agent suite — a design-led precedent for how AI disclosure should work in regulated financial services.
-      </p>
+        </p>
 
-      <h3 class="case-study-subheading">Building LMG's First AI Research Department</h3>
-      <p>
-        There was no research function when I arrived. I built it from scratch — establishing the methodology, tooling, and team to run structured research with the MyCRM user base. My team ran the largest user research study ever conducted with MyCRM users, with findings that directly reshaped the AI roadmap and influenced executive prioritisation.
-      </p>
-      <p>
-        That research function became the feedback loop that kept every AI feature grounded in what brokers actually needed — not what we assumed they needed.
-      </p>
+        <figure class="cs-media cs-media-crop">
+        <div class="cs-media-frame"><img src="assets/contextual-disclosure.png" alt="The end of an AI-generated lender rationale in MyCRM Intelligence, showing the copy control directly above an acknowledgement that the broker has reviewed the AI output and made their own professional judgment" loading="lazy" /></div>
+        <figcaption>Disclosure at the moment of consequence. The acknowledgement sits against the copy control — the broker is told they're working with AI-generated content at the point they take it into the application, not in a checkbox they'd have learned to dismiss.</figcaption>
+        </figure>
 
-      <h3 class="case-study-subheading">A New Measurement Framework for AI UX</h3>
-      <p>
+        <h3>Building LMG's first AI research function</h3>
+        <p>
+        There was no research function when I arrived. I built it from scratch — establishing the methodology, tooling, and team to run structured research with the MyCRM user base. I had my senior researcher establish a continuous AI research programme rather than one-off studies, so the roadmap stayed connected to what brokers were actually experiencing.
+        </p>
+        <p>
+        In December she ran a study with approximately <strong>100 brokers</strong> to understand their confidence levels with AI, their expectations, what they'd be willing to pay, the tools they were already using, and their existing skill level. The findings were genuinely surprising in places, and they directly reshaped the AI roadmap and influenced executive prioritisation. That study became the largest piece of user research ever conducted with MyCRM users, and the practice it established — dedicated user testing for AI prototypes — is now standard.
+        </p>
+
+        <h3>A new measurement framework for AI UX</h3>
+        <p>
         Most teams measure AI success with adoption and thumbs-up rates. That's not enough to understand trust — and in a regulated industry, trust is the product. I developed a 13-behaviour UX measurement framework tracked in Pendo, designed to answer the question no standard analytics dashboard asks: <em>are brokers actually trusting this?</em>
-      </p>
-      <ul class="case-study-list">
-        <li><strong>Copy Response Rate as a trust proxy:</strong> When a broker copies an AI output into their notes, we treat that as a strong signal of trust. We benchmarked >30% of thumbs-up sessions should include a copy action. If copy rate is high but thumbs-up is low, something's wrong with the UI — not the AI.</li>
-        <li><strong>Citation Sources Click-Through Rate:</strong> How often do brokers click through to verify the AI's source? We expect high engagement early, then a drop-off as trust is established. That curve is the shape of calibrated trust. If it doesn't drop, brokers are over-verifying — a signal that the AI's confidence presentation is wrong.</li>
-        <li><strong>Latency-to-Sentiment Correlation:</strong> We map response wait time against thumbs up/down to locate the broker's "Frustration Threshold." This directly informs the Chain of Thought microcopy — the in-progress messaging that keeps brokers engaged during longer retrievals. Benchmark: flat sentiment curve even when responses exceed 120 seconds.</li>
-        <li><strong>WAU & Stickiness — the "novelty to necessity" test:</strong> The defining question for any AI feature: did brokers use it once and forget it, or does it come back every client? We benchmarked >80% of pilot users returning to the tool for each new client in the researching phase. That's the threshold between novelty and workflow dependency.</li>
-      </ul>
+        </p>
+        <ul class="cs-list">
+        <li><strong>Copy response rate as a trust proxy</strong>When a broker copies an AI output into their notes, we treat that as a strong signal of trust. We benchmarked that &gt;30% of thumbs-up sessions should include a copy action. If copy rate is high but thumbs-up is low, something's wrong with the UI — not the AI.</li>
+        <li><strong>Citation source click-through rate</strong>How often do brokers click through to verify the AI's source? We expect high engagement early, then a drop-off as trust is established. That curve is the shape of calibrated trust. If it doesn't drop, brokers are over-verifying — a signal that the AI's confidence presentation is wrong.</li>
+        <li><strong>Latency-to-sentiment correlation</strong>We map response wait time against thumbs up/down to locate the broker's frustration threshold. This directly informs the chain-of-thought microcopy — the in-progress messaging that keeps brokers engaged during longer retrievals. Benchmark: a flat sentiment curve even when responses exceed 120 seconds.</li>
+        <li><strong>WAU &amp; stickiness — the novelty-to-necessity test</strong>The defining question for any AI feature: did brokers use it once and forget it, or does it come back every client? We benchmarked &gt;80% of pilot users returning to the tool for each new client in the researching phase. That's the threshold between novelty and workflow dependency.</li>
+        </ul>
+      </div>
     </section>
 
-    <!-- PROCESS & OUTCOMES -->
-    <section class="case-study-section">
-      <h2>Process & Outcomes</h2>
-      <p>
-        We launched <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link"><strong>My Note Writer</strong></a> first — an AI assistant that automatically drafts lender rationales, product selection notes, and exit strategies from data already in the broker's application file. Outputs are structured, editable, and BID-ready (Best Interests Duty compliant) — giving brokers a compliant foundation for every submission in seconds.
-      </p>
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>Process &amp; Outcomes</h2></div>
+      <div class="cs-section-body">
+        <div class="cs-block">
+          <div class="cs-block-main">
+            <p>
+            We launched <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link"><strong>My Note Writer</strong></a> first — an AI assistant that automatically drafts lender rationales, product selection notes, and exit strategies from data already in the broker's application file. Outputs are structured, editable, and BID-ready (Best Interests Duty compliant) — giving brokers a compliant foundation for every submission in seconds.
+            </p>
 
-      <div class="case-study-quote">
-        <blockquote>"This would take me 20 minutes to write, now it's done in seconds."</blockquote>
-        <cite>— <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link">Dustin McMahon, LMG broker</a></cite>
-      </div>
+            <div class="cs-quote">
+            <blockquote>"This would take me 20 minutes to write, now it's done in seconds."</blockquote>
+            <cite>— <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener">Dustin McMahon, LMG broker</a></cite>
+            </div>
 
-      <div class="case-study-quote">
-        <blockquote>"It speaks better than I do."</blockquote>
-        <cite>— <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener" class="cs-link">Renee Menzies, LMG broker</a></cite>
-      </div>
+            <div class="cs-quote">
+            <blockquote>"It speaks better than I do."</blockquote>
+            <cite>— <a href="https://lmg.broker/media/lmg-unveils-mycrm-intelligence-ai-fully-built-into-mycrm" target="_blank" rel="noopener">Renee Menzies, LMG broker</a></cite>
+            </div>
+          </div>
+          <div class="cs-block-rail">
+            <figure class="cs-media">
+            <div class="cs-media-frame">
+            <video autoplay loop muted playsinline preload="metadata" poster="assets/my-note-writer-poster.jpg" aria-label="My Note Writer drafting a lender and product selection rationale, streaming the approach and funding summary into the panel">
+            <source src="assets/my-note-writer.mp4" type="video/mp4" />
+            </video>
+            </div>
+            <figcaption>My Note Writer drafting a lender and product selection rationale from data already in the application file. The broker reviews and edits before any of it is used — the draft is never the final word.</figcaption>
+            </figure>
+          </div>
+        </div>
 
-      <p>
-        <strong>My Quality Assurance</strong> followed — an AI tool that reviews loan applications across 500+ data points before lodgement, flagging missing information, funding gaps, and potential product mismatches. The design challenge here was cultural as much as functional: brokers initially read a "QA review" as a suggestion that their work wasn't good enough. The reframe that landed was positioning My QA as a second set of expert eyes — a compliance coach, not a critic.
-      </p>
-      <p>
-      <div class="case-study-quote">
-        <blockquote>"I don't fear AI. The future for established brokerages is becoming tech-based relationship businesses."</blockquote>
-        <cite>— <a href="https://www.brokerdaily.au/technology/21325-lmg-reveals-ai-roadmap-focused-on-broker-efficiency" target="_blank" rel="noopener" class="cs-link">Matthew Atkin, Atlas Broker</a></cite>
-      </div>
+        <div class="cs-block">
+          <div class="cs-block-main">
+            <p>
+            <strong>My QA</strong> followed — an AI tool that reviews loan applications across 500+ data points before lodgement, flagging missing information, funding gaps, and potential product mismatches. The design challenge here was cultural as much as functional: brokers initially read a "QA review" as a suggestion that their work wasn't good enough. The reframe that landed was positioning My QA as a second set of expert eyes — a compliance coach, not a critic.
+            </p>
 
-      <p>
-        Both tools were piloted with 100+ brokers across Australia and New Zealand before company-wide release. Adoption grew from launch in December 2024 to approximately <strong>35% of all users by mid-2026</strong> — scaling alongside continuous quality improvements driven by the measurement framework. As <a href="https://www.mpamag.com/au/mortgage-industry/technology/lmg-launches-embedded-ai-tools-in-mycrm/558390" target="_blank" rel="noopener" class="cs-link">Whitney Cali stated at launch</a>: <em>"Our goal is to make every broker an augmented broker: empowered by technology, supported by data, and always in control."</em>
-      </p>
-      <p>
+            <div class="cs-quote">
+            <blockquote>"I don't fear AI. The future for established brokerages is becoming tech-based relationship businesses."</blockquote>
+            <cite>— <a href="https://www.brokerdaily.au/technology/21325-lmg-reveals-ai-roadmap-focused-on-broker-efficiency" target="_blank" rel="noopener">Matthew Atkin, Atlas Broker</a></cite>
+            </div>
+          </div>
+          <div class="cs-block-rail">
+            <figure class="cs-media">
+            <div class="cs-media-frame">
+            <video autoplay loop muted playsinline preload="metadata" poster="assets/my-qa-review-poster.jpg" aria-label="My QA streaming its review findings on a loan application: missing privacy consent, an out-of-date settlement date, declared expenses below the HEM benchmark, a funding shortfall, and an offset account discrepancy">
+            <source src="assets/my-qa-review.mp4" type="video/mp4" />
+            </video>
+            </div>
+            <figcaption>My QA working through an application. Each finding is a plain-language issue with its reasoning attached — a funding shortfall, expenses below the HEM benchmark, an offset feature contradicting the rationale — so the broker can act on it or argue with it, rather than being handed a score.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <h3>My Data Analyst — stepping into product ownership</h3>
+        <p>
+        For <a href="https://www.linkedin.com/posts/lmg-au_mydataanalyst-activity-7495635723715395585-705t" target="_blank" rel="noopener" class="cs-link"><strong>My Data Analyst</strong></a> I took on the product as well as the design, working as <strong>co-product manager</strong> alongside my Head of Design role. It turns a broker's MyCRM data into answers without spreadsheets or manual reports — ask a question, get the answer, save it into the Insights Builder.
+        </p>
+        <p>
+        Owning the product definition as well as the interface meant I could hold the authorship and trust principles all the way through scoping and prioritisation, not just at the surface. When the trade-off between a faster answer and a verifiable one came up, it wasn't a design opinion being argued into a product decision — it was the same person making both calls.
+        </p>
+
+        <!-- MEDIA SLOT: My Data Analyst — ask a question, get an answer, save to Insights Builder.
+        A short screen recording tells this story far better than a still.
+        <figure class="cs-media cs-media-wide">
+        <div class="cs-media-frame">
+        <video autoplay loop muted playsinline poster="assets/my-data-analyst-poster.jpg">
+        <source src="assets/my-data-analyst.mp4" type="video/mp4" />
+        </video>
+        </div>
+        <figcaption>My Data Analyst turning a plain-language question about a broker's own MyCRM data into an answer, then saving it into the Insights Builder.</figcaption>
+        </figure>
+        -->
+
+        <h3>Taking the roadmap to brokers</h3>
+        <p>
+        Adoption isn't only a product problem. I travelled around Australia speaking at broker events on behalf of the product and experience teams — presenting the AI assistants, walking through the roadmap, and answering the hard questions in the room about accuracy, compliance, and what the tools deliberately would not do.
+        </p>
+        <p>
+        Standing in front of the people who use the product is also the fastest research loop there is. A lot of what I heard at those events — the hesitations, the workarounds, the features brokers assumed existed — went straight back into the roadmap and into the research programme.
+        </p>
+
+        <!-- MEDIA SLOT: photos from the broker events / roadshow. Stage shot plus a
+        roadmap slide works well. Portrait phone photos: swap cs-media for
+        "cs-media cs-media-portrait".
+        <div class="cs-media-pair">
+        <figure class="cs-media">
+        <div class="cs-media-frame"><img src="assets/broker-event-stage.jpg" alt="Alex McMahon presenting the MyCRM Intelligence roadmap at an LMG broker event" /></div>
+        <figcaption>Presenting the AI roadmap to brokers on the road.</figcaption>
+        </figure>
+        <figure class="cs-media">
+        <div class="cs-media-frame"><img src="assets/broker-event-room.jpg" alt="Brokers in the audience at an LMG event" /></div>
+        <figcaption>The questions from the floor were the fastest research loop we had.</figcaption>
+        </figure>
+        </div>
+        -->
+
+        <div class="cs-block">
+          <div class="cs-block-main">
+            <p>
+            Both tools were piloted with 100+ brokers across Australia and New Zealand before company-wide release in December 2024. By July 2026, <a href="https://www.brokernews.com.au/news/breaking-news/lmgs-ai-tools-cut-loan-approval-times-by-18-289830.aspx" target="_blank" rel="noopener" class="cs-link">more than 3,800 brokers were using My Note Writer and My QA in a single month</a> — around two-thirds of the network — with loan approval times down <strong>18% year-on-year</strong> and individual brokers reporting up to 50 minutes saved per application. As <a href="https://www.mpamag.com/au/mortgage-industry/technology/lmg-launches-embedded-ai-tools-in-mycrm/558390" target="_blank" rel="noopener" class="cs-link">Whitney Cali stated at launch</a>: <em>"Our goal is to make every broker an augmented broker: empowered by technology, supported by data, and always in control."</em>
+            </p>
+
+            <p>
+            That quote is the one I point to when people ask whether AI features are worth building. The time saved isn't the outcome — what the brokerage <em>does</em> with the time is. Fifty minutes back per application turned into repricing work that generated new leads, which is a business result, not a productivity statistic.
+            </p>
+          </div>
+          <div class="cs-block-rail">
+            <div class="cs-quote">
+            <blockquote>"MyCRM Intelligence saves us 50 minutes per application. We now use that time to reprice and engage our back book, which is already generating new leads and making a real impact on our business."</blockquote>
+            <cite>— <a href="https://www.instagram.com/p/DXvQiHDmUcP/" target="_blank" rel="noopener">Tania Richardson, Operations Manager, Loan Market Ellenbrook</a></cite>
+            </div>
+          </div>
+        </div>
+
+        <p>
         I also led the commercial strategy for MyCRM Intelligence — building the pricing and packaging model to turn the AI suite from an included feature into a revenue-generating product tier. Design leadership extended into commercial strategy: how should AI be packaged, priced, and positioned for a business of 6,000 brokers with varying needs and sophistication?
-      </p>
+        </p>
 
-      <div class="case-study-metrics">
+        <div class="cs-metrics" id="metrics">
         <div class="metric-card">
-          <div class="metric-value">35%</div>
-          <div class="metric-label">Platform-wide AI adoption by mid-2026</div>
+        <div class="metric-value">3,800+</div>
+        <div class="metric-label">Brokers using the AI assistants monthly, July 2026</div>
         </div>
         <div class="metric-card">
-          <div class="metric-value">500+</div>
-          <div class="metric-label">Data points reviewed by My QA per application</div>
+        <div class="metric-value">18%</div>
+        <div class="metric-label">Faster loan approvals year-on-year</div>
         </div>
         <div class="metric-card">
-          <div class="metric-value">13</div>
-          <div class="metric-label">Category AI pattern library authored</div>
+        <div class="metric-value">500+</div>
+        <div class="metric-label">Data points reviewed by My QA per application</div>
         </div>
         <div class="metric-card">
-          <div class="metric-value">$370B</div>
-          <div class="metric-label">Loan book on the platform</div>
+        <div class="metric-value">13</div>
+        <div class="metric-label">Category AI pattern library authored</div>
+        </div>
         </div>
       </div>
     </section>
 
-    <!-- REFLECTION -->
-    <section class="case-study-section">
-      <h2>Reflection & Impact</h2>
-      <p>
+    <section class="cs-section reveal">
+      <div class="cs-section-rail"><h2>Reflection &amp; Impact</h2></div>
+      <div class="cs-section-body">
+        <p>
         The ASIC disclosure win changed how I think about design leadership. The most impactful design decision on this project wasn't a layout, an animation, or an information architecture choice — it was a regulatory argument made in a meeting with legal and compliance. Design leaders in AI have to be willing to own those conversations. If we leave regulatory decisions to lawyers and compliance teams without a design voice, we get AI that's compliant but unusable. The two have to be designed together.
-      </p>
-      <p>
+        </p>
+        <p>
         The measurement framework taught me that most teams are measuring the wrong things. Adoption tells you brokers opened the feature. Thumbs-up tells you they liked an output. Neither tells you whether they trust the AI enough to act on it. Copy rate, citation verification, latency-sentiment correlation — these are the signals that tell you whether you've built something that earns the right to be used in a consequential context.
-      </p>
-      <p>
+        </p>
+        <p>
         And the Tribe Award matters more to me than any individual metric. It was the team that won it — eight designers who had to figure out, largely from first principles, what responsible AI design looks like in a regulated industry. That's the work I'm most proud of enabling.
-      </p>
+        </p>
+      </div>
     </section>
 
   </article>
 
+  <!-- ===== NEXT ===== -->
+  <a href="expedia.html" class="cs-next" style="display:block;">
+    <div class="cs-next-label">Next Case Study</div>
+    <div class="cs-next-title">Expedia Group — Partner Central ↗</div>
+  </a>
+
   <footer class="footer">
-    <div class="footer-inner">
-      <span>© 2025 Alex McMahon</span>
-      <span>Brisbane, Australia</span>
-      <span>alexmcmahon.com.au</span>
-    </div>
+    <span>© 2026 Alex McMahon · Sunshine Coast, Australia</span>
+    <span>Built with Claude Code</span>
   </footer>
 
-  <script src="../script.js"></script>
+  <script>
+    'use strict';
+
+    const shimmerEl = document.querySelector('.shimmer');
+    if (shimmerEl) setTimeout(() => shimmerEl.classList.add('active'), 1000);
+
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal, .metric-card').forEach(el => obs.observe(el));
+
+    // Respect reduced-motion: hand the clips back to the viewer instead of looping at them.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.cs-media video').forEach(v => {
+        v.autoplay = false;
+        v.controls = true;
+        v.pause();
+      });
+    }
+  </script>
 </body>
 </html>
