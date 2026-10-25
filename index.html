@@ -574,9 +574,12 @@
     }
     @media (max-width: 640px) {
       .draw-prompt { display: none; }
+      .section,
+      .ai-section,
+      .building-section { padding: 72px clamp(24px, 6vw, 32px); }
       .stat { padding: 32px 16px; }
       .stat-num { font-size: clamp(36px, 10vw, 48px); }
-      .ai-cards { grid-template-columns: 1fr; gap: 16px; }
+      .ai-cards { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
       .ai-card { padding: 28px 24px; }
       .speak-cards { grid-template-columns: 1fr; gap: 16px; }
       .speak-card { padding: 24px 22px; }
